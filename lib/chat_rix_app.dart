@@ -17,7 +17,7 @@ class ChatRix extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             routes: {
               CreateAccountPage.routeName: (context) =>
-                  const CreateAccountPage(),
+                   CreateAccountPage(),
             },
           );
         });
