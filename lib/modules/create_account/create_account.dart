@@ -3,25 +3,20 @@ import 'package:chat_app/shared/components/custom_button.dart';
 import 'package:chat_app/shared/components/custom_text_form_field.dart';
 import 'package:chat_app/shared/styles/app_strings.dart';
 import 'package:chat_app/shared/styles/app_text_styles.dart';
-import 'package:chat_app/shared/styles/colors.dart';
 import 'package:chat_app/shared/styles/images_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'widgets/social_container.dart';
 
-class CreateAccountPage extends StatelessWidget {
-  CreateAccountPage({super.key});
-  String emailPattern = r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
-      r'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
-      r'\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*'
-      r'[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4]'
-      r'[0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9]'
-      r'[0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\'
-      r'x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])';
-
-  String passPattern =
-      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$';
+class CreateAccountPage extends StatefulWidget {
+  const CreateAccountPage({super.key});
   static const String routeName = 'create Account Page';
+  @override
+  State<CreateAccountPage> createState() => _CreateAccountPageState();
+}
+
+class _CreateAccountPageState extends State<CreateAccountPage> {
   var formKey = GlobalKey<FormState>();
   var yourNameController = TextEditingController();
   var emailController = TextEditingController();
@@ -41,10 +36,13 @@ class CreateAccountPage extends StatelessWidget {
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.only(left: 51.w, right: 52.w),
-            child: Form(
-              key: formKey,
+          child: Form(
+            key: formKey,
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: 51.w,
+                right: 52.w,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -66,9 +64,12 @@ class CreateAccountPage extends StatelessWidget {
                   ),
                   CustomTextFormField(
                     hintText: 'yourName',
-                    controller: yourNameController ,
+                    controller: yourNameController,
                     prefixIcon: Padding(
-                      padding: EdgeInsets.only(right: 18.5.w, left: 21.w),
+                      padding: EdgeInsets.only(
+                        right: 18.5.w,
+                        left: 21.w,
+                      ),
                       child: Image.asset(
                         AppImages.icPerson,
                         width: 17.39.w,
@@ -97,7 +98,10 @@ class CreateAccountPage extends StatelessWidget {
                     keyboardType: TextInputType.emailAddress,
                     controller: emailController,
                     prefixIcon: Padding(
-                      padding: EdgeInsets.only(right: 18.5.w, left: 21.w),
+                      padding: EdgeInsets.only(
+                        right: 18.5.w,
+                        left: 21.w,
+                      ),
                       child: Image.asset(
                         AppImages.icEmail,
                         width: 19.w,
@@ -108,7 +112,7 @@ class CreateAccountPage extends StatelessWidget {
                       if (value == null || value.trim().isEmpty) {
                         return 'email address is required';
                       }
-                      var regexp = RegExp(emailPattern);
+                      var regexp = RegExp(AppStrings.emailPattern);
                       if (!regexp.hasMatch(value)) {
                         return 'Invalid Email , please Enter a valid one';
                       }
@@ -141,7 +145,7 @@ class CreateAccountPage extends StatelessWidget {
                       if (value == null || value.trim().isEmpty) {
                         return 'password is required';
                       }
-                      var regexp = RegExp(passPattern);
+                      var regexp = RegExp(AppStrings.passPattern);
                       if (!regexp.hasMatch(value)) {
                         return AppStrings.validatePassword;
                       }
@@ -223,28 +227,7 @@ class CreateAccountPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        width: 58.1.w,
-                        height: 44.h,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          border: BorderDirectional(
-                            start: BorderSide(
-                              color: AppColors.whiteColor,
-                              width: 0.3.w,
-                            ),
-                            end: BorderSide(
-                              color: AppColors.whiteColor,
-                              width: 0.3.w,
-                            ),
-                          ),
-                          borderRadius: BorderRadius.circular(8.85.r),
-                          gradient: LinearGradient(colors: [
-                            AppColors.whiteColor.withOpacity(0.22),
-                            AppColors.whiteColor.withOpacity(0.1),
-                            AppColors.whiteColor.withOpacity(0.0),
-                          ]),
-                        ),
+                      SocialContainer(
                         child: SvgPicture.asset(
                           AppImages.icGoogle,
                           width: 20.w,
@@ -254,31 +237,7 @@ class CreateAccountPage extends StatelessWidget {
                       SizedBox(
                         width: 20.w,
                       ),
-                      Container(
-                        width: 58.1.w,
-                        height: 44.h,
-                        padding: EdgeInsets.only(
-                          top: 5.h,
-                        ),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          border: BorderDirectional(
-                            start: BorderSide(
-                              color: AppColors.whiteColor,
-                              width: 0.3.w,
-                            ),
-                            end: BorderSide(
-                              color: AppColors.whiteColor,
-                              width: 0.3.w,
-                            ),
-                          ),
-                          borderRadius: BorderRadius.circular(8.85.r),
-                          gradient: LinearGradient(colors: [
-                            AppColors.whiteColor.withOpacity(0.22),
-                            AppColors.whiteColor.withOpacity(0.1),
-                            AppColors.whiteColor.withOpacity(0.0),
-                          ]),
-                        ),
+                      SocialContainer(
                         child: SvgPicture.asset(
                           AppImages.icApple,
                           width: 32.w,
@@ -288,31 +247,7 @@ class CreateAccountPage extends StatelessWidget {
                       SizedBox(
                         width: 20.w,
                       ),
-                      Container(
-                        width: 58.1.w,
-                        height: 44.h,
-                        padding: EdgeInsets.only(
-                          top: 8.h,
-                        ),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          border: BorderDirectional(
-                            start: BorderSide(
-                              color: AppColors.whiteColor,
-                              width: 0.3.w,
-                            ),
-                            end: BorderSide(
-                              color: AppColors.whiteColor,
-                              width: 0.3.w,
-                            ),
-                          ),
-                          borderRadius: BorderRadius.circular(8.85.r),
-                          gradient: LinearGradient(colors: [
-                            AppColors.whiteColor.withOpacity(0.22),
-                            AppColors.whiteColor.withOpacity(0.1),
-                            AppColors.whiteColor.withOpacity(0.0),
-                          ]),
-                        ),
+                      SocialContainer(
                         child: SvgPicture.asset(
                           AppImages.icFaceBook,
                           width: 35.w,
@@ -320,7 +255,7 @@ class CreateAccountPage extends StatelessWidget {
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
