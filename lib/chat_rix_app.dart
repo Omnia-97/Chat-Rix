@@ -1,4 +1,4 @@
-import 'package:chat_app/modules/create_account/create_account.dart';
+import 'package:chat_app/modules/create_account/create_account_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,11 +13,11 @@ class ChatRix extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, child) {
           return MaterialApp(
-            initialRoute: CreateAccountPage.routeName,
+            initialRoute: CreateAccountView.routeName,
             debugShowCheckedModeBanner: false,
             routes: {
-              CreateAccountPage.routeName: (context) =>
-                   CreateAccountPage(),
+              CreateAccountView.routeName: (context) =>
+                   CreateAccountView(),
             },
           );
         });

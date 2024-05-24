@@ -6,6 +6,9 @@ class AppStrings{
   static const String confirmPassword = 'Confirm Password';
   static const String signUp = 'Sign Up';
   static const String orSignUpWith = 'Or sign up with';
+  static const String error = 'Something went wrong';
+  static const String tryAgain = 'Try Again';
+  static const String cancel = 'Cancel';
   static const String validatePassword = 'Invalid password \n* the password must be Minimum eight characters,\n* at least one uppercase letter,\n* one lowercase letter,\n* one number and one special character';
   static const String emailPattern = r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
       r'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
