@@ -1,9 +1,12 @@
+import 'package:chat_app/modules/create_account/connector.dart';
 import 'package:chat_app/modules/create_account/create_account_vm.dart';
 import 'package:chat_app/modules/create_account/widgets/custom_container.dart';
 import 'package:chat_app/shared/components/custom_button.dart';
 import 'package:chat_app/shared/components/custom_text_form_field.dart';
+import 'package:chat_app/shared/data/errors/firebase_errors.dart';
 import 'package:chat_app/shared/utils/app_strings.dart';
 import 'package:chat_app/shared/utils/app_text_styles.dart';
+import 'package:chat_app/shared/utils/colors.dart';
 import 'package:chat_app/shared/utils/images_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,13 +21,20 @@ class CreateAccountView extends StatefulWidget {
   State<CreateAccountView> createState() => _CreateAccountViewState();
 }
 
-class _CreateAccountViewState extends State<CreateAccountView> {
+class _CreateAccountViewState extends State<CreateAccountView>
+    implements Connector {
   CreateAccountViewModel createAccountViewModel = CreateAccountViewModel();
   var formKey = GlobalKey<FormState>();
   var yourNameController = TextEditingController();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var confirmPasswordController = TextEditingController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    createAccountViewModel.connector = this;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -197,34 +207,36 @@ class _CreateAccountViewState extends State<CreateAccountView> {
                       onTap: () {
                         if (formKey.currentState!.validate()) {
                           createAccountViewModel.createUserAccount(
-                              email: emailController.text,
-                              password: passwordController.text,
-                              yourName: yourNameController.text,
-                              onSuccess: () {},
-                              onError: (errorMessage) {
-                                return showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return AlertDialog(
-                                        title: const Text(AppStrings.error),
-                                        content: Text(errorMessage),
-                                        actions: [
-                                          ElevatedButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child: const Text(AppStrings.tryAgain),
-                                          ),
-                                          ElevatedButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child: const Text(AppStrings.cancel),
-                                          ),
-                                        ],
-                                      );
-                                    });
-                              },);
+                            email: emailController.text,
+                            password: passwordController.text,
+                            yourName: yourNameController.text,
+                            /*onSuccess: () {},
+                            onError: (errorMessage) {
+                              return showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: const Text(AppStrings.error),
+                                      content: Text(errorMessage),
+                                      actions: [
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child:
+                                              const Text(AppStrings.tryAgain),
+                                        ),
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text(AppStrings.cancel),
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            },*/
+                          );
                         }
                       },
                     ),
@@ -297,5 +309,74 @@ class _CreateAccountViewState extends State<CreateAccountView> {
         ),
       ),
     );
+  }
+
+  @override
+  void hideLoading() {
+    Navigator.pop(context);
+  }
+
+  @override
+  void showErrorMassage(String? errorMassage) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text(AppStrings.error),
+            content: Text(errorMassage ?? FirebaseErrors.somethingWentWrong),
+            actions: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text(
+                  AppStrings.tryAgain,
+                  style: TextStyle(color: AppColors.primaryColor),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text(
+                  AppStrings.cancel,
+                  style: TextStyle(color: AppColors.primaryColor),
+                ),
+              ),
+            ],
+          );
+        });
+  }
+
+  @override
+  void showLoading() {
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(
+          color: AppColors.primaryColor,
+        ),
+      ),
+    );
+  }
+
+  @override
+  void showSuccessMassage(String? successMassage) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return Container(
+            height: 50.h,
+            alignment: Alignment.center,
+            child: AlertDialog(
+              content: Text(
+                successMassage ?? 'Email created successfully',
+                style: AppTextStyles.hintTextStyle.copyWith(
+                  color: AppColors.primaryColor,
+                ),
+              ),
+            ),
+          );
+        });
   }
 }
