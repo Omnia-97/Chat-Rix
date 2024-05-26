@@ -3,6 +3,7 @@ import 'package:chat_app/shared/utils/app_strings.dart';
 import 'package:chat_app/shared/utils/app_text_styles.dart';
 import 'package:chat_app/shared/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BaseViewModel<T extends BaseNavigator> extends ChangeNotifier {
   T? navigator;
@@ -82,20 +83,30 @@ abstract class BaseView<T extends StatefulWidget, VM extends BaseViewModel>
         return Stack(
           children: [
             Positioned(
-              bottom: 20.0,
+              bottom: 15.0,
               left: 20.0,
               right: 20.0,
-              child: Container(
-                alignment: Alignment.center,
-                child: Material(
-                  type: MaterialType.transparency,
-                  child: AlertDialog(
-                    content: Center(
-                      child: Text(
-                        successMassage ?? 'Done successfully',
-                        style: AppTextStyles.bodyMedium.copyWith(
-                          color: AppColors.primaryColor,
-                        ),
+              child: Material(
+                type: MaterialType.transparency,
+                child: AlertDialog(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  content: Container(
+                    alignment: Alignment.center,
+                    width: MediaQuery.of(context).size.width,
+                    height: 50.h,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(colors: [
+                        AppColors.primaryColor,
+                        AppColors.secondaryColor.withOpacity(0.5),
+                      ]),
+                      borderRadius: BorderRadius.circular(15.r),
+                    ),
+                    child: Text(
+                      successMassage ?? 'Done successfully',
+                      style: AppTextStyles.bodyMedium.copyWith(
+                        color: AppColors.whiteColor,
+                        fontSize: 16.sp,
                       ),
                     ),
                   ),

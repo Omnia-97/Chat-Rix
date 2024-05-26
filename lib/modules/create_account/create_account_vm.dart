@@ -1,3 +1,5 @@
+import 'package:chat_app/database/database_utils.dart';
+import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/modules/base.dart';
 import 'package:chat_app/modules/create_account/create_account_navigator.dart';
 import 'package:chat_app/shared/data/errors/firebase_errors.dart';
@@ -18,9 +20,17 @@ class CreateAccountViewModel extends BaseViewModel<CreateAccountNavigator> {
         email: email,
         password: password,
       );
+      UserModel userModel = UserModel(
+        id: credential.user?.uid ?? '',
+        email: email,
+        userName: yourName,
+      );
+      DataBaseUtils.addUserToFireStore(userModel).then((value) {
+        navigator!.goToHome(userModel);
+      });
       navigator!.hideLoading();
       navigator!.showSuccessMassage('Successfully created account');
-
+      navigator!.hideLoading();
       //onSuccess();
     } on FirebaseAuthException catch (e) {
       if (e.code == FirebaseErrors.weakPassword) {

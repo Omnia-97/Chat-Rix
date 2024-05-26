@@ -54,6 +54,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         color: AppColors.whiteColor,
         fontSize: 18.sp,
       ),
+      textInputAction: TextInputAction.next,
       mouseCursor: SystemMouseCursors.click,
       decoration: InputDecoration(
         contentPadding: widget.contentPadding ?? EdgeInsets.only(bottom: 10.h),

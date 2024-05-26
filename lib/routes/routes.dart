@@ -1,4 +1,5 @@
 import 'package:chat_app/modules/create_account/create_account_view.dart';
+import 'package:chat_app/modules/home/home_view.dart';
 import 'package:chat_app/modules/sign_in/sign_in_view.dart';
 import 'package:chat_app/modules/splash.dart';
 import 'package:chat_app/routes/pages_route_name.dart';
@@ -20,6 +21,11 @@ class AppRoutes {
       case PagesRouteName.signIn:
         return MaterialPageRoute(
           builder: (context) => const SignInView(),
+          settings: settings,
+        );
+      case PagesRouteName.home:
+        return MaterialPageRoute(
+          builder: (context) => const HomeView(),
           settings: settings,
         );
       default:
