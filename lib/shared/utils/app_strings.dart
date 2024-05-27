@@ -30,4 +30,6 @@ class AppStrings {
   static const String orContinueWith = 'Or continue with';
   static const String dontHaveAccount = 'Don’t have an account?';
   static const String register = 'Register';
+  static const String appName = 'ChatRix';
+  static const String noRooms = 'No rooms found. Create a new one and start chatting!';
 }

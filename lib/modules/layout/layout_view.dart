@@ -1,4 +1,5 @@
 import 'package:chat_app/modules/provider/user_provider.dart';
+import 'package:chat_app/shared/utils/app_strings.dart';
 import 'package:chat_app/shared/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,36 +32,41 @@ class _LayoutViewState extends State<LayoutView> {
           ),
         ],
         bottom: PreferredSize(
-          preferredSize: Size.zero, // Adjust the height of the line
+          preferredSize: Size.zero,
           child: Container(
             height: 0.3.h,
             decoration: BoxDecoration(
               color: AppColors.primaryColor,
               boxShadow: [
                 BoxShadow(
-                    color: AppColors.primaryColor.withOpacity(0.7),
-                    blurRadius: 1)
+                  color: AppColors.primaryColor.withOpacity(0.7),
+                  blurRadius: 1,
+                ),
               ],
             ),
           ),
         ),
         backgroundColor: AppColors.whiteColor,
-        title: Text('ChatRix',
-            style: AppTextStyles.titleLarge
-                .copyWith(color: AppColors.primaryColor, fontSize: 30)),
+        title: Text(
+          AppStrings.appName,
+          style: AppTextStyles.titleLarge.copyWith(
+            color: AppColors.primaryColor,
+            fontSize: 30.sp,
+          ),
+        ),
       ),
       body: provider.tabs[provider.currentIndex],
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.primaryColor,
-        highlightElevation: 20.0,
+        highlightElevation: 20.0.h,
         elevation: 10.0,
         onPressed: () {},
-        child: const Align(
+        child: Align(
           alignment: AlignmentDirectional.center,
           child: Icon(
             Icons.group_add_rounded,
-            size: 26,
-            color: Color(0xFFe1e7f5),
+            size: 26.w,
+            color: AppColors.thirdColor,
           ),
         ),
       ),

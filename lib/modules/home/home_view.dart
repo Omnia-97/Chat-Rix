@@ -5,7 +5,6 @@ import 'package:chat_app/shared/utils/app_strings.dart';
 import 'package:chat_app/shared/utils/app_text_styles.dart';
 import 'package:chat_app/shared/utils/colors.dart';
 import 'package:chat_app/shared/utils/images_path.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -28,16 +27,23 @@ class _HomeViewState extends BaseView<HomeView, HomeViewModel>
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 200.h,),
+        SizedBox(
+          height: 200.h,
+        ),
         Align(
-          alignment: AlignmentDirectional.center,
-            child: Image.asset(AppImages.roomEmpty,width: 370.w,)),
+            alignment: AlignmentDirectional.center,
+            child: Image.asset(
+              AppImages.roomEmpty,
+              width: 370.w,
+            )),
         Align(
           alignment: AlignmentDirectional.center,
           child: Text(
-            'No rooms found. Create a new one and start chatting!',
-            style: AppTextStyles.hintTextStyle
-                .copyWith(color: AppColors.primaryColor,fontWeight: FontWeight.w600),
+            AppStrings.noRooms,
+            style: AppTextStyles.hintTextStyle.copyWith(
+              color: AppColors.primaryColor,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ],
