@@ -1,8 +1,8 @@
-import 'package:chat_app/database/database_utils.dart';
 import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/modules/base.dart';
 import 'package:chat_app/modules/sign_in/sign_in_navigator.dart';
 import 'package:chat_app/shared/data/errors/firebase_errors.dart';
+import 'package:chat_app/shared/database/database_utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class SignInViewModel extends BaseViewModel<SignInNavigator> {

@@ -1,8 +1,8 @@
-import 'package:chat_app/database/database_utils.dart';
 import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/modules/contacts/contacts_view.dart';
 import 'package:chat_app/modules/home/home_view.dart';
 import 'package:chat_app/modules/settings/settings_view.dart';
+import 'package:chat_app/shared/database/database_utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -25,9 +25,10 @@ class UserProvider extends ChangeNotifier {
       await initUser();
     }
   }
+
   int currentIndex = 0;
   List<Widget> tabs = [
-     const HomeView(),
+    const HomeView(),
     const ContactsView(),
     const SettingsView(),
   ];
@@ -36,5 +37,4 @@ class UserProvider extends ChangeNotifier {
     currentIndex = index;
     notifyListeners();
   }
-
 }
