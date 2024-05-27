@@ -273,9 +273,11 @@ class _SignInViewState extends BaseView<SignInView, SignInViewModel>
 
   @override
   void goToHome(UserModel userModel) {
-    var provider = Provider.of<UserProvider>(context,listen: false);
-    provider.userModel=userModel;
+    var provider = Provider.of<UserProvider>(context, listen: false);
+    provider.userModel = userModel;
     Navigator.pushReplacementNamed(
-        context, PagesRouteName.home,);
+      context,
+      PagesRouteName.layout,
+    );
   }
 }

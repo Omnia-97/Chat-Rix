@@ -28,9 +28,8 @@ class CreateAccountViewModel extends BaseViewModel<CreateAccountNavigator> {
       DataBaseUtils.addUserToFireStore(userModel).then((value) {
         navigator!.goToHome(userModel);
       });
-      navigator!.hideLoading();
+
       navigator!.showSuccessMassage('Successfully created account');
-      navigator!.hideLoading();
       //onSuccess();
     } on FirebaseAuthException catch (e) {
       if (e.code == FirebaseErrors.weakPassword) {

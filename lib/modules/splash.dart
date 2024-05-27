@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 3), () {
       var provider = Provider.of<UserProvider>(context, listen: false);
       provider.firebaseUser != null
-          ? Navigator.pushReplacementNamed(context, PagesRouteName.home)
+          ? Navigator.pushReplacementNamed(context, PagesRouteName.layout)
           : Navigator.pushReplacementNamed(context, PagesRouteName.signIn);
     });
   }

@@ -340,6 +340,6 @@ class _CreateAccountViewState
     var provider = Provider.of<UserProvider>(context,listen: false);
     provider.userModel=userModel;
     Navigator.pushNamedAndRemoveUntil(
-        context, PagesRouteName.home, (route) => false);
+        context, PagesRouteName.layout, (route) => false);
   }
 }
