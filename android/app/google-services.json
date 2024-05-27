@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "938962604486",
+    "project_id": "chat-rix",
+    "storage_bucket": "chat-rix.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:938962604486:android:2443f2920b3f224b0422c7",
+        "android_client_info": {
+          "package_name": "com.example.chat_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYO4Hd43TSqnVKKmPc71Z9HELurWWEErU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

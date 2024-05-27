@@ -1,6 +1,7 @@
-import 'package:chat_app/modules/create_account/create_account.dart';
+import 'package:chat_app/shared/utils/my_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'shared/routes/routes.dart';
 
 class ChatRix extends StatelessWidget {
   const ChatRix({super.key});
@@ -13,12 +14,9 @@ class ChatRix extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, child) {
           return MaterialApp(
-            initialRoute: CreateAccountPage.routeName,
             debugShowCheckedModeBanner: false,
-            routes: {
-              CreateAccountPage.routeName: (context) =>
-                  const CreateAccountPage(),
-            },
+            theme: MyTheme.lightTheme,
+            onGenerateRoute: (settings) => AppRoutes.onGeneratedRoute(settings),
           );
         });
   }
