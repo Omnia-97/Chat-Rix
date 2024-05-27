@@ -32,4 +32,10 @@ class AppStrings {
   static const String register = 'Register';
   static const String appName = 'ChatRix';
   static const String noRooms = 'No rooms found. Create a new one and start chatting!';
+  static const String createNewRoom = 'Create New Room';
+  static const String roomName = 'Name';
+  static const String roomCategory = 'Category';
+  static const String roomDescription = 'Description';
+  static const String create = 'Create';
+  static const String back = 'Back';
 }

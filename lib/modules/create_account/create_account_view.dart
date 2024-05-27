@@ -221,6 +221,11 @@ class _CreateAccountViewState
                         height: 27.h,
                       ),
                       CustomButton(
+                        width: double.infinity,
+                        gradient: LinearGradient(colors: [
+                          AppColors.primaryColor,
+                          AppColors.secondaryColor.withOpacity(0.5),
+                        ]),
                         buttonText: AppStrings.signUp,
                         onTap: () {
                           if (formKey.currentState!.validate()) {
@@ -337,8 +342,8 @@ class _CreateAccountViewState
 
   @override
   void goToHome(UserModel userModel) {
-    var provider = Provider.of<UserProvider>(context,listen: false);
-    provider.userModel=userModel;
+    var provider = Provider.of<UserProvider>(context, listen: false);
+    provider.userModel = userModel;
     Navigator.pushNamedAndRemoveUntil(
         context, PagesRouteName.layout, (route) => false);
   }

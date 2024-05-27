@@ -156,6 +156,11 @@ class _SignInViewState extends BaseView<SignInView, SignInViewModel>
                         height: 24.h,
                       ),
                       CustomButton(
+                        width: double.infinity,
+                        gradient:  LinearGradient(colors: [
+                          AppColors.primaryColor,
+                          AppColors.secondaryColor.withOpacity(0.5),
+                        ]),
                         buttonText: AppStrings.signIn,
                         onTap: () {
                           if (formKey.currentState!.validate()) {

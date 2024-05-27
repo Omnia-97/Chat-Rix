@@ -18,10 +18,20 @@ class CustomTextFormField extends StatefulWidget {
       this.onSaved,
       this.prefixIcon,
       this.contentPadding,
+        this.fillColor,
+        this.borderColor,
+        this.hintColor,
+        this.textColor,
+        this.courserColor,
       super.key});
   String hintText;
   Widget? suffixIcon;
   Widget? prefixIcon;
+  Color? fillColor;
+  Color? borderColor;
+  Color? hintColor;
+  Color? textColor;
+  Color? courserColor;
   EdgeInsetsGeometry? contentPadding;
   final bool? isPassword;
   final TextEditingController? controller;
@@ -49,40 +59,42 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: widget.keyboardType,
       obscureText: widget.isPassword ?? false ? obscureText : !obscureText,
-      cursorColor: AppColors.whiteColor,
+      cursorColor: widget.courserColor ?? AppColors.whiteColor,
       style: TextStyle(
-        color: AppColors.whiteColor,
+        color: widget.textColor ?? AppColors.whiteColor,
         fontSize: 18.sp,
       ),
       textInputAction: TextInputAction.next,
       mouseCursor: SystemMouseCursors.click,
       decoration: InputDecoration(
+        filled: true,
+        fillColor: widget.fillColor ?? Colors.transparent,
         contentPadding: widget.contentPadding ?? EdgeInsets.only(bottom: 10.h),
         hintText: widget.hintText,
         hintStyle: GoogleFonts.poppins(
           fontSize: 14.sp,
           fontWeight: FontWeight.w300,
-          color: AppColors.whiteColor,
+          color: widget.hintColor ?? AppColors.whiteColor,
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.r),
-          borderSide: BorderSide(color: Colors.white, width: 0.3.w),
+          borderSide: BorderSide(color: widget.borderColor ?? AppColors.whiteColor, width: 0.3.w),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.white,
+            color:widget.borderColor ?? AppColors.whiteColor,
             width: 0.3.w,
           ),
         ),
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.white,
+            color: widget.borderColor ?? AppColors.whiteColor,
             width: 0.3.w,
           ),
         ),
         border: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.white,
+            color: widget.borderColor ?? AppColors.whiteColor,
             width: 0.3.w,
           ),
         ),

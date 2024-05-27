@@ -10,4 +10,5 @@ class AppImages {
   static const String icApple = 'assets/icons/ic_apple.svg';
   static const String icFaceBook = 'assets/icons/ic_facebook.svg';
   static const String roomEmpty = 'assets/images/room_empty.png';
+  static const String roomBg = 'assets/images/room_bg.png';
 }

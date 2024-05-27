@@ -1,4 +1,5 @@
 import 'package:chat_app/modules/create_account/create_account_view.dart';
+import 'package:chat_app/modules/create_new_room/create_new_room_view.dart';
 import 'package:chat_app/modules/home/home_view.dart';
 import 'package:chat_app/modules/layout/layout_view.dart';
 import 'package:chat_app/modules/sign_in/sign_in_view.dart';
@@ -32,6 +33,11 @@ class AppRoutes {
       case PagesRouteName.home:
         return MaterialPageRoute(
           builder: (context) => const HomeView(),
+          settings: settings,
+        );
+      case PagesRouteName.createRoom:
+        return MaterialPageRoute(
+          builder: (context) => const CreateNewRoomView(),
           settings: settings,
         );
       default:

@@ -1,4 +1,5 @@
 import 'package:chat_app/modules/provider/user_provider.dart';
+import 'package:chat_app/shared/routes/pages_route_name.dart';
 import 'package:chat_app/shared/utils/app_strings.dart';
 import 'package:chat_app/shared/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +61,9 @@ class _LayoutViewState extends State<LayoutView> {
         backgroundColor: AppColors.primaryColor,
         highlightElevation: 20.0.h,
         elevation: 10.0,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, PagesRouteName.createRoom);
+        },
         child: Align(
           alignment: AlignmentDirectional.center,
           child: Icon(
