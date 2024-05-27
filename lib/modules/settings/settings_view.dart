@@ -1,7 +1,7 @@
 import 'package:chat_app/modules/base.dart';
 import 'package:chat_app/modules/settings/setting_navigator.dart';
 import 'package:chat_app/modules/settings/setting_vm.dart';
-import 'package:chat_app/routes/pages_route_name.dart';
+import 'package:chat_app/shared/routes/pages_route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

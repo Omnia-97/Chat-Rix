@@ -1,5 +1,5 @@
 import 'package:chat_app/modules/provider/user_provider.dart';
-import 'package:chat_app/routes/pages_route_name.dart';
+import 'package:chat_app/shared/routes/pages_route_name.dart';
 import 'package:chat_app/shared/utils/images_path.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
