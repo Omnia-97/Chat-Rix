@@ -78,6 +78,7 @@ abstract class BaseView<T extends StatefulWidget, VM extends BaseViewModel>
   @override
   void showSuccessMassage(String? successMassage) {
     showDialog(
+
       context: context,
       builder: (context) {
         return Stack(
@@ -117,5 +118,6 @@ abstract class BaseView<T extends StatefulWidget, VM extends BaseViewModel>
         );
       },
     );
+
   }
 }
