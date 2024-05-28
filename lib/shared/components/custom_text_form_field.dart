@@ -81,18 +81,21 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           borderSide: BorderSide(color: widget.borderColor ?? AppColors.whiteColor, width: 0.3.w),
         ),
         focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.r),
           borderSide: BorderSide(
             color:widget.borderColor ?? AppColors.whiteColor,
             width: 0.3.w,
           ),
         ),
         errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.r),
           borderSide: BorderSide(
             color: widget.borderColor ?? AppColors.whiteColor,
             width: 0.3.w,
           ),
         ),
         border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.r),
           borderSide: BorderSide(
             color: widget.borderColor ?? AppColors.whiteColor,
             width: 0.3.w,
