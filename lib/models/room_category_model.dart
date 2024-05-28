@@ -1,5 +1,3 @@
-import 'package:chat_app/shared/utils/images_path.dart';
-
 class RoomCategoryModel {
   String id;
   String categoryName;
@@ -13,47 +11,47 @@ class RoomCategoryModel {
   static List<RoomCategoryModel> getCategories(){
     return [
       RoomCategoryModel(
-        id: '1',
+        id: 'family',
         categoryName: 'Family',
         categoryImage: '🏠',
       ),
       RoomCategoryModel(
-        id: '2',
+        id: 'friends',
         categoryName: 'Friends',
         categoryImage: '🤜🏻🤛🏻',
       ),
       RoomCategoryModel(
-        id: '3',
+        id: 'love',
         categoryName: 'Love',
         categoryImage: '💖',
       ),
       RoomCategoryModel(
-        id: '4',
+        id: 'work',
         categoryName: 'Work',
         categoryImage:'🏢',
       ),
       RoomCategoryModel(
-        id: '5',
+        id: 'music',
         categoryName: 'Music',
         categoryImage:'🎵',
       ),
       RoomCategoryModel(
-        id: '6',
+        id: 'movies',
         categoryName: 'Movies',
         categoryImage: '🎬',
       ),
       RoomCategoryModel(
-        id: '7',
+        id: 'sports',
         categoryName: 'Sports',
         categoryImage: '⚽',
       ),
       RoomCategoryModel(
-        id: '8',
+        id: 'gaming',
         categoryName: 'Gaming',
         categoryImage: '🎮',
       ),
       RoomCategoryModel(
-        id: '9',
+        id: 'others',
         categoryName: 'Others',
         categoryImage: '🔎',
       ),

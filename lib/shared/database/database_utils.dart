@@ -47,10 +47,17 @@ class DataBaseUtils {
       },
     );
   }
+
   static Future<void> addRoomToFireStore(RoomModel roomModel) {
     var collection = getRoomsCollection();
     var docRef = collection.doc();
     roomModel.id = docRef.id;
     return docRef.set(roomModel);
+  }
+
+  static Stream<QuerySnapshot<RoomModel>> getRoomFromFireStore() {
+    return getRoomsCollection()
+        .where("userId", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .snapshots();
   }
 }
