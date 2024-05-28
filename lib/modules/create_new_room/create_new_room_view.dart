@@ -119,7 +119,8 @@ class _CreateNewRoomViewState
                             child: Text(
                               AppStrings.createNewRoom,
                               style: AppTextStyles.titleLarge.copyWith(
-                                  color: AppColors.primaryColor, fontSize: 26.sp),
+                                  color: AppColors.primaryColor,
+                                  fontSize: 26.sp),
                             ),
                           ),
                           /* Align(
@@ -209,7 +210,8 @@ class _CreateNewRoomViewState
                                             children: [
                                               Text(
                                                 category.categoryImage,
-                                                style: AppTextStyles.hintTextStyle
+                                                style: AppTextStyles
+                                                    .hintTextStyle
                                                     .copyWith(
                                                   color: AppColors.primaryColor,
                                                 ),
@@ -219,7 +221,8 @@ class _CreateNewRoomViewState
                                               ),
                                               Text(
                                                 category.categoryName,
-                                                style: AppTextStyles.hintTextStyle
+                                                style: AppTextStyles
+                                                    .hintTextStyle
                                                     .copyWith(
                                                   color: AppColors.primaryColor,
                                                 ),
@@ -279,9 +282,14 @@ class _CreateNewRoomViewState
                               if (formKey.currentState!.validate()) {
                                 viewModel.createRoom(
                                   roomName: roomNameController.text,
-                                  roomDescription: roomDescriptionController.text,
+                                  roomDescription:
+                                      roomDescriptionController.text,
                                   roomCategoryId: roomCategoryModel.id,
-                                  userId: FirebaseAuth.instance.currentUser!.uid,
+                                  userId:
+                                      FirebaseAuth.instance.currentUser!.uid,
+                                  participantIds: [
+                                    FirebaseAuth.instance.currentUser!.uid
+                                  ],
                                 );
                               }
                             },

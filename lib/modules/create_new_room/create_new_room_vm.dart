@@ -8,13 +8,14 @@ class CreateNewRoomViewModel extends BaseViewModel<CreateNewRoomNavigator> {
       {required String roomName,
       required String roomDescription,
       required String roomCategoryId,
-      required String userId}) {
+      required String userId, required List<String> participantIds,}) {
     RoomModel roomModel = RoomModel(
         userId: userId,
         roomName: roomName,
         roomDescription: roomDescription,
-        roomCategoryId: roomCategoryId);
-    navigator!.showSuccessMassage('Room created successfully');
+        roomCategoryId: roomCategoryId,
+        participantIds: participantIds,);
+    navigator!.showLoading();
     DataBaseUtils.addRoomToFireStore(roomModel).then((value) => {
       navigator!.hideLoading(),
       navigator!.goToHome(),

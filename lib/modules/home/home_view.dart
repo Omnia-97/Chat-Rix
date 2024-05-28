@@ -2,6 +2,7 @@ import 'package:chat_app/models/room_model.dart';
 import 'package:chat_app/modules/base.dart';
 import 'package:chat_app/modules/home/home_navigator.dart';
 import 'package:chat_app/modules/home/home_vm.dart';
+import 'package:chat_app/modules/home/widgets/room_item.dart';
 import 'package:chat_app/shared/utils/app_strings.dart';
 import 'package:chat_app/shared/utils/app_text_styles.dart';
 import 'package:chat_app/shared/utils/colors.dart';
@@ -73,10 +74,7 @@ class _HomeViewState extends BaseView<HomeView, HomeViewModel>
                   itemCount: rooms.length,
                   itemBuilder: (context, index) {
                     var room = rooms[index].data();
-                    return ListTile(
-                      title: Text(room.roomName),
-                      subtitle: Text(room.roomDescription),
-                    );
+                    return RoomItem(roomModel:room );
                   },
                 );
               },
