@@ -4,6 +4,7 @@ import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/modules/base.dart';
 import 'package:chat_app/modules/chat/chat_navigator.dart';
 import 'package:chat_app/modules/chat/chat_vm.dart';
+import 'package:chat_app/modules/chat/widgets/sender_widget.dart';
 import 'package:chat_app/modules/provider/user_provider.dart';
 import 'package:chat_app/shared/components/custom_button.dart';
 import 'package:chat_app/shared/components/custom_text_form_field.dart';
@@ -48,6 +49,9 @@ class _ChatViewState extends BaseView<ChatView, ChatViewModel>
           ),
           body: Column(
             children: [
+              SizedBox(
+                height: 10.h,
+              ),
               Expanded(
                   child: StreamBuilder<QuerySnapshot<MessageModel>>(
                 stream: viewModel.readMessages(),
@@ -67,7 +71,7 @@ class _ChatViewState extends BaseView<ChatView, ChatViewModel>
                       snapshot.data?.docs.map((doc) => doc.data()).toList();
                   return ListView.builder(
                     itemBuilder: (context, index) {
-                      return Text(message?[index].content ?? "");
+                      return MessageWidget(messageModel: message![index]);
                     },
                     itemCount: message?.length ?? 0,
                   );
