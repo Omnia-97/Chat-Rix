@@ -23,7 +23,7 @@ class AppRoutes {
         );
       case PagesRouteName.signIn:
         return MaterialPageRoute(
-          builder: (context) => const SignInView(),
+          builder: (context) =>  SignInView(),
           settings: settings,
         );
       case PagesRouteName.layout:

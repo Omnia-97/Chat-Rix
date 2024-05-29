@@ -39,7 +39,6 @@ class DataBaseUtils {
   static Future<void> inviteUserToRoom(String roomId, String userId) async {
     var roomDoc = getRoomsCollection().doc(roomId);
     var roomSnapshot = await roomDoc.get();
-
     if (roomSnapshot.exists) {
       var roomData = roomSnapshot.data();
       if (roomData != null) {

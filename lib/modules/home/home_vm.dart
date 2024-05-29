@@ -7,9 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class HomeViewModel extends BaseViewModel<HomeNavigator>{
   Stream<QuerySnapshot<RoomModel>>? roomsStream;
   void getRooms() async{
-    //navigator!.showLoading();
     try{
-    //navigator!.hideLoading();
     roomsStream = DataBaseUtils.getRoomFromFireStore();
     }catch(e){
       navigator!.showErrorMassage(e.toString());

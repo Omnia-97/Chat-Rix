@@ -25,11 +25,12 @@ class _HomeViewState extends BaseView<HomeView, HomeViewModel>
   void initState() {
     super.initState();
     viewModel.navigator = this;
-    viewModel.getRooms();
   }
 
   @override
   Widget build(BuildContext context) {
+    viewModel.getRooms();
+
     return ChangeNotifierProvider(
       create: (context) => viewModel,
       child: Consumer<HomeViewModel>(
@@ -74,7 +75,7 @@ class _HomeViewState extends BaseView<HomeView, HomeViewModel>
                   itemCount: rooms.length,
                   itemBuilder: (context, index) {
                     var room = rooms[index].data();
-                    return RoomItem(roomModel:room );
+                    return RoomItem(roomModel: room);
                   },
                 );
               },

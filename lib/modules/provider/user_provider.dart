@@ -29,7 +29,7 @@ class UserProvider extends ChangeNotifier {
   int currentIndex = 0;
   List<Widget> tabs = [
     const HomeView(),
-    const InviteUserView(),
+    const ContactsView(),
     const SettingsView(),
   ];
 

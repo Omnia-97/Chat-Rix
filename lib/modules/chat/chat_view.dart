@@ -1,10 +1,11 @@
 import 'package:chat_app/models/message_model.dart';
 import 'package:chat_app/models/room_model.dart';
-import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/modules/base.dart';
 import 'package:chat_app/modules/chat/chat_navigator.dart';
 import 'package:chat_app/modules/chat/chat_vm.dart';
 import 'package:chat_app/modules/chat/widgets/sender_widget.dart';
+import 'package:chat_app/modules/contacts/contacts_view.dart';
+import 'package:chat_app/modules/invitation.dart';
 import 'package:chat_app/modules/provider/user_provider.dart';
 import 'package:chat_app/shared/components/custom_button.dart';
 import 'package:chat_app/shared/components/custom_text_form_field.dart';
@@ -46,6 +47,19 @@ class _ChatViewState extends BaseView<ChatView, ChatViewModel>
             backgroundColor: AppColors.primaryColor,
             title: Text(" ${roomModel.roomName} Room",
                 style: AppTextStyles.titleLarge),
+            actions: [
+              IconButton(
+                icon: Icon(Icons.person_add),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => InviteUserView(roomId: roomModel.id),
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
           body: Column(
             children: [
