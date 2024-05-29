@@ -89,7 +89,7 @@ class _LayoutViewState extends State<LayoutView> {
               icon: Icon(
                 Icons.contact_mail,
               ),
-              label: 'Contacts'),
+              label: 'Invitation'),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.settings_outlined,

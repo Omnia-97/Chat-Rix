@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ContactsView extends StatelessWidget {
-  const ContactsView({super.key});
+class InviteUserView extends StatelessWidget {
+  const InviteUserView({super.key});
 
   @override
   Widget build(BuildContext context) {

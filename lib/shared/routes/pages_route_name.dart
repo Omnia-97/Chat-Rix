@@ -5,4 +5,5 @@ class PagesRouteName {
   static const String layout = '/layout';
   static const String home = '/home';
   static const String createRoom = '/create_room';
+  static const String chat = '/chat';
 }
