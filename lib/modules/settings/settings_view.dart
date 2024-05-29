@@ -27,7 +27,6 @@ class _SettingsViewState extends BaseView<SettingsView,SettingViewModel> impleme
         children: [
           Text('settin'),
           ElevatedButton(onPressed: (){
-            viewModel.signOut();
           }, child: Text('Sign out')),
         ],
       ),

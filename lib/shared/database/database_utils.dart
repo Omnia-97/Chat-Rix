@@ -90,7 +90,7 @@ class DataBaseUtils {
 
   static Stream<QuerySnapshot<RoomModel>> getRoomFromFireStore() {
     return getRoomsCollection()
-        .where("userId", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        //.where("userId", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
         .snapshots();
   }
   static CollectionReference<MessageModel> getMessageCollection(String roomId) {
@@ -112,6 +112,19 @@ class DataBaseUtils {
     return docRef.set(messageModel);
   }
   static Stream<QuerySnapshot<MessageModel>> readMessageFromFireStore(String roomId) {
-    return getMessageCollection(roomId).orderBy('timestamp').snapshots();
+    return getMessageCollection(roomId).orderBy('dateTime').snapshots();
+  }
+  static Future<void> addUserToRoom(String roomId, String userId) async {
+    var roomDoc = await getRoomsCollection().doc(roomId).get();
+    if (roomDoc.exists) {
+      var roomData = roomDoc.data()!.toJson();
+      List<String> participantIds = List<String>.from(roomData['participantIds'] ?? []);
+      if (!participantIds.contains(userId)) {
+        participantIds.add(userId);
+        await getRoomsCollection().doc(roomId).update({
+          'participantIds': participantIds,
+        });
+      }
+    }
   }
 }

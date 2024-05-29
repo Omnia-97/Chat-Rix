@@ -8,9 +8,9 @@ class CreateNewRoomViewModel extends BaseViewModel<CreateNewRoomNavigator> {
       {required String roomName,
       required String roomDescription,
       required String roomCategoryId,
-      required String userId, required List<String> participantIds,}) {
+      /*required String userId,*/ required List<String> participantIds,}) {
     RoomModel roomModel = RoomModel(
-        userId: userId,
+     /*   userId: userId,*/
         roomName: roomName,
         roomDescription: roomDescription,
         roomCategoryId: roomCategoryId,

@@ -71,7 +71,8 @@ class _HomeViewState extends BaseView<HomeView, HomeViewModel>
                   );
                 }
                 var rooms = snapshot.data!.docs;
-                return ListView.builder(
+                return ListView.separated(
+                  separatorBuilder: (context, index) => SizedBox(height: 5.h,),
                   itemCount: rooms.length,
                   itemBuilder: (context, index) {
                     var room = rooms[index].data();

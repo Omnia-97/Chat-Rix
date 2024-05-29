@@ -23,6 +23,7 @@ class CustomTextFormField extends StatefulWidget {
         this.hintColor,
         this.textColor,
         this.courserColor,
+        this.radius,
       super.key});
   String hintText;
   Widget? suffixIcon;
@@ -32,6 +33,7 @@ class CustomTextFormField extends StatefulWidget {
   Color? hintColor;
   Color? textColor;
   Color? courserColor;
+  double? radius;
   EdgeInsetsGeometry? contentPadding;
   final bool? isPassword;
   final TextEditingController? controller;
@@ -77,25 +79,25 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           color: widget.hintColor ?? AppColors.whiteColor,
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.r),
+          borderRadius: BorderRadius.circular(widget.radius ?? 8.r ),
           borderSide: BorderSide(color: widget.borderColor ?? AppColors.whiteColor, width: 0.3.w),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.r),
+          borderRadius: BorderRadius.circular(widget.radius ?? 8.r),
           borderSide: BorderSide(
             color:widget.borderColor ?? AppColors.whiteColor,
             width: 0.3.w,
           ),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.r),
+          borderRadius: BorderRadius.circular(widget.radius ?? 8.r),
           borderSide: BorderSide(
             color: widget.borderColor ?? AppColors.whiteColor,
             width: 0.3.w,
           ),
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.r),
+          borderRadius: BorderRadius.circular(widget.radius ?? 8.r),
           borderSide: BorderSide(
             color: widget.borderColor ?? AppColors.whiteColor,
             width: 0.3.w,

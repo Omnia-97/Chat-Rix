@@ -5,6 +5,7 @@ import 'package:chat_app/modules/base.dart';
 import 'package:chat_app/modules/chat/chat_navigator.dart';
 import 'package:chat_app/shared/database/database_utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 class ChatViewModel extends BaseViewModel<ChatNavigator> {
   late RoomModel roomModel;
@@ -15,7 +16,7 @@ class ChatViewModel extends BaseViewModel<ChatNavigator> {
       senderId: userModel.id,
       senderName: userModel.userName,
       content: content,
-      timestamp: Timestamp.now(),
+      dateTime: DateTime.now().microsecondsSinceEpoch,
     );
     DataBaseUtils.addMessageToFireStore(messageModel).then(
       (value) => navigator!.clearContentMessage(),
@@ -24,4 +25,5 @@ class ChatViewModel extends BaseViewModel<ChatNavigator> {
   Stream<QuerySnapshot<MessageModel>> readMessages() {
     return DataBaseUtils.readMessageFromFireStore(roomModel.id);
   }
+
 }

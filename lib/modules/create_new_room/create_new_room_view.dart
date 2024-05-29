@@ -285,8 +285,8 @@ class _CreateNewRoomViewState
                                   roomDescription:
                                       roomDescriptionController.text,
                                   roomCategoryId: roomCategoryModel.id,
-                                  userId:
-                                      FirebaseAuth.instance.currentUser!.uid,
+                                  /*userId:
+                                      FirebaseAuth.instance.currentUser!.uid,*/
                                   participantIds: [
                                     FirebaseAuth.instance.currentUser!.uid
                                   ],

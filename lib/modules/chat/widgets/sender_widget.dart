@@ -1,9 +1,11 @@
 import 'package:chat_app/models/message_model.dart';
 import 'package:chat_app/modules/chat/widgets/receiver_widget.dart';
 import 'package:chat_app/modules/provider/user_provider.dart';
+import 'package:chat_app/shared/utils/app_text_styles.dart';
 import 'package:chat_app/shared/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class SenderWidget extends StatelessWidget {
@@ -12,13 +14,19 @@ class SenderWidget extends StatelessWidget {
     required this.messageModel,
   });
   MessageModel messageModel;
+
   @override
   Widget build(BuildContext context) {
+    int ts = messageModel.dateTime;
+    var dt = DateTime.fromMillisecondsSinceEpoch(ts);
+
+    var date = DateFormat('MM/dd/yyyy, hh:mm a').format(dt);
     return Align(
       alignment: AlignmentDirectional.centerEnd,
-      child: Padding(
-        padding:  EdgeInsets.only(right: 5.w, top: 10.h, bottom: 10.h, left: 90.w),
+      child: IntrinsicWidth(
         child: Container(
+          margin: const EdgeInsets.all(8.0),
+          padding:  EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 12.0.w),
           decoration: BoxDecoration(
             color: AppColors.primaryColor,
             borderRadius: BorderRadius.only(
@@ -28,14 +36,23 @@ class SenderWidget extends StatelessWidget {
             ),
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                messageModel.content,
-                style: const TextStyle(color: Colors.white),
+                "${messageModel.senderName} 👋🏻",
+                style: AppTextStyles.hintTextStyle,
               ),
+              SizedBox(height: 5.h,),
               Text(
-                messageModel.timestamp.toString(),
-                style: const TextStyle(color: Colors.white),
+                messageModel.content,
+                style: AppTextStyles.bodyMedium,
+              ),
+              Align(
+                alignment: AlignmentDirectional.centerEnd,
+                child: Text(
+                  date.substring(12),
+                  style: AppTextStyles.hintTextStyle.copyWith(fontSize: 12.sp),
+                ),
               ),
             ],
           ),
