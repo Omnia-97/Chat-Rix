@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:chat_app/models/message_model.dart';
 import 'package:chat_app/models/room_model.dart';
 import 'package:chat_app/modules/base.dart';
@@ -14,6 +16,7 @@ import 'package:chat_app/shared/utils/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class ChatView extends StatefulWidget {
@@ -31,6 +34,22 @@ class _ChatViewState extends BaseView<ChatView, ChatViewModel>
     // TODO: implement initState
     super.initState();
     viewModel.navigator = this;
+  }
+   File? image;
+  void  getImageFromGallery() async {
+    final ImagePicker picker = ImagePicker();
+// Pick an image.
+    final XFile? imageGallery = await picker.pickImage(source: ImageSource.gallery);
+    if(imageGallery != null) {
+      image = File(imageGallery.path);
+    }
+
+    setState(() {
+
+    });
+/*// Capture a photo.
+    final XFile? imageCamera = await picker.pickImage(source: ImageSource.camera);*/
+
   }
 
   @override
@@ -132,10 +151,15 @@ class _ChatViewState extends BaseView<ChatView, ChatViewModel>
                             color: AppColors.whiteColor,
                             size: 20,
                           ),
-                          suffixIcon: const Icon(
-                            Icons.camera_alt_outlined,
-                            color: AppColors.whiteColor,
-                            size: 20,
+                          suffixIcon:  InkWell(
+                            onTap: (){
+                             getImageFromGallery();
+                            },
+                            child: Icon(
+                              Icons.camera_alt_outlined,
+                              color: AppColors.whiteColor,
+                              size: 20,
+                            ),
                           ),
                           hintText: 'Message',
                           contentPadding: EdgeInsets.symmetric(vertical: 0.h),
@@ -145,18 +169,18 @@ class _ChatViewState extends BaseView<ChatView, ChatViewModel>
                     SizedBox(width: 8.w),
                     CircleAvatar(
                       backgroundColor: AppColors.primaryColor,
-                      radius: 22,
+                      radius: 22.r,
                       child: CircleAvatar(
-                        radius: 20,
-                        backgroundColor: AppColors.whiteColor,
+                        radius: 21.r,
+                        backgroundColor: AppColors.primaryColor,
                         child: IconButton(
                           onPressed: () {
                             viewModel
                                 .sendMessage(contentMessageController.text);
                           },
                           icon: const Icon(
-                            Icons.send,
-                            color: AppColors.primaryColor,
+                            Icons.send_rounded,
+                            color: AppColors.whiteColor,
                           ),
                         ),
                       ),
@@ -178,4 +202,6 @@ class _ChatViewState extends BaseView<ChatView, ChatViewModel>
   void clearContentMessage() {
     contentMessageController.clear();
   }
+
+
 }
