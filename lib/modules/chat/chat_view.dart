@@ -2,9 +2,11 @@ import 'dart:io';
 
 import 'package:chat_app/models/message_model.dart';
 import 'package:chat_app/models/room_model.dart';
+import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/modules/base.dart';
 import 'package:chat_app/modules/chat/chat_navigator.dart';
 import 'package:chat_app/modules/chat/chat_vm.dart';
+import 'package:chat_app/modules/chat/widgets/receiver_widget.dart';
 import 'package:chat_app/modules/chat/widgets/sender_widget.dart';
 
 import 'package:chat_app/modules/layout/layout_view.dart';
@@ -14,6 +16,7 @@ import 'package:chat_app/shared/components/custom_text_form_field.dart';
 import 'package:chat_app/shared/utils/app_text_styles.dart';
 import 'package:chat_app/shared/utils/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
@@ -31,33 +34,34 @@ class _ChatViewState extends BaseView<ChatView, ChatViewModel>
   var contentMessageController = TextEditingController();
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     viewModel.navigator = this;
   }
-   File? image;
-  void  getImageFromGallery() async {
+
+  File? image;
+  void getImageFromGallery() async {
     final ImagePicker picker = ImagePicker();
-// Pick an image.
-    final XFile? imageGallery = await picker.pickImage(source: ImageSource.gallery);
-    if(imageGallery != null) {
+    final XFile? imageGallery =
+        await picker.pickImage(source: ImageSource.gallery);
+    if (imageGallery != null) {
       image = File(imageGallery.path);
+      await viewModel.sendImageMessage(image!);
+      setState(() {});
     }
-
-    setState(() {
-
-    });
-/*// Capture a photo.
-    final XFile? imageCamera = await picker.pickImage(source: ImageSource.camera);*/
-
   }
 
   @override
   Widget build(BuildContext context) {
     var roomModel = ModalRoute.of(context)!.settings.arguments as RoomModel;
-    var provider = Provider.of<UserProvider>(context);
+    var provider = Provider.of<UserProvider>(context, listen: false);
     viewModel.roomModel = roomModel;
-    viewModel.userModel = provider.userModel!;
+    viewModel.userModel = provider.userModel ??
+        UserModel(
+          id: "",
+          userName: '',
+          email: '',
+        );
+
     viewModel.readMessages();
     return ChangeNotifierProvider(
         create: (context) => viewModel,
@@ -132,6 +136,7 @@ class _ChatViewState extends BaseView<ChatView, ChatViewModel>
                       snapshot.data?.docs.map((doc) => doc.data()).toList();
                   return ListView.builder(
                     itemBuilder: (context, index) {
+                      print(message?[index].senderName);
                       return MessageWidget(messageModel: message![index]);
                     },
                     itemCount: message?.length ?? 0,
@@ -151,9 +156,9 @@ class _ChatViewState extends BaseView<ChatView, ChatViewModel>
                             color: AppColors.whiteColor,
                             size: 20,
                           ),
-                          suffixIcon:  InkWell(
-                            onTap: (){
-                             getImageFromGallery();
+                          suffixIcon: InkWell(
+                            onTap: () {
+                              getImageFromGallery();
                             },
                             child: Icon(
                               Icons.camera_alt_outlined,
@@ -175,8 +180,10 @@ class _ChatViewState extends BaseView<ChatView, ChatViewModel>
                         backgroundColor: AppColors.primaryColor,
                         child: IconButton(
                           onPressed: () {
-                            viewModel
-                                .sendMessage(contentMessageController.text);
+                            if (contentMessageController.text.isNotEmpty) {
+                              viewModel
+                                  .sendMessage(contentMessageController.text);
+                            }
                           },
                           icon: const Icon(
                             Icons.send_rounded,
@@ -202,6 +209,4 @@ class _ChatViewState extends BaseView<ChatView, ChatViewModel>
   void clearContentMessage() {
     contentMessageController.clear();
   }
-
-
 }

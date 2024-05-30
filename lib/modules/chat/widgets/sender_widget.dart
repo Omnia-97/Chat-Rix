@@ -17,9 +17,9 @@ class SenderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isImage = messageModel.content.startsWith('https://');
     int ts = messageModel.dateTime;
     var dt = DateTime.fromMillisecondsSinceEpoch(ts);
-
     var date = DateFormat('MM/dd/yyyy, hh:mm a').format(dt);
     return Align(
       alignment: AlignmentDirectional.centerEnd,
@@ -42,8 +42,15 @@ class SenderWidget extends StatelessWidget {
                 "${messageModel.senderName} 👋🏻",
                 style: AppTextStyles.hintTextStyle,
               ),
-              SizedBox(height: 5.h,),
-              Text(
+              SizedBox(height: 5.h),
+              isImage
+                  ? Image.network(
+                messageModel.content,
+                width: 150.w,
+                height: 150.h,
+                fit: BoxFit.cover,
+              )
+                  : Text(
                 messageModel.content,
                 style: AppTextStyles.bodyMedium,
               ),
@@ -72,10 +79,10 @@ class MessageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<UserProvider>(context);
-    return provider.userModel!.id == messageModel.senderId
+    return provider.userModel!.id  == messageModel.senderId
         ? SenderWidget(messageModel: messageModel)
         : ReceiverWidget(
-            messageModel: messageModel,
-          );
+      messageModel: messageModel,
+    );
   }
 }

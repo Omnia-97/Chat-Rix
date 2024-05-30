@@ -80,7 +80,6 @@ class DataBaseUtils {
     );
   }
 
-
   static Future<void> addRoomToFireStore(RoomModel roomModel) {
     var collection = getRoomsCollection();
     var docRef = collection.doc();
@@ -93,8 +92,10 @@ class DataBaseUtils {
         //.where("userId", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
         .snapshots();
   }
+
   static CollectionReference<MessageModel> getMessageCollection(String roomId) {
-    return getRoomsCollection().doc(roomId)
+    return getRoomsCollection()
+        .doc(roomId)
         .collection(MessageModel.collectionName)
         .withConverter<MessageModel>(
       fromFirestore: (snapshot, _) {
@@ -105,20 +106,25 @@ class DataBaseUtils {
       },
     );
   }
+
   static Future<void> addMessageToFireStore(MessageModel messageModel) {
     var collection = getMessageCollection(messageModel.roomId);
     var docRef = collection.doc();
     messageModel.id = docRef.id;
     return docRef.set(messageModel);
   }
-  static Stream<QuerySnapshot<MessageModel>> readMessageFromFireStore(String roomId) {
+
+  static Stream<QuerySnapshot<MessageModel>> readMessageFromFireStore(
+      String roomId) {
     return getMessageCollection(roomId).orderBy('dateTime').snapshots();
   }
+
   static Future<void> addUserToRoom(String roomId, String userId) async {
     var roomDoc = await getRoomsCollection().doc(roomId).get();
     if (roomDoc.exists) {
       var roomData = roomDoc.data()!.toJson();
-      List<String> participantIds = List<String>.from(roomData['participantIds'] ?? []);
+      List<String> participantIds =
+          List<String>.from(roomData['participantIds'] ?? []);
       if (!participantIds.contains(userId)) {
         participantIds.add(userId);
         await getRoomsCollection().doc(roomId).update({

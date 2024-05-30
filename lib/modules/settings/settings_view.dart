@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:chat_app/modules/base.dart';
 import 'package:chat_app/modules/settings/setting_navigator.dart';
 import 'package:chat_app/modules/settings/setting_vm.dart';

@@ -10,14 +10,15 @@ class ReceiverWidget extends StatelessWidget {
     super.key,
     required this.messageModel,
   });
-  MessageModel messageModel;
+  final MessageModel messageModel;
 
   @override
   Widget build(BuildContext context) {
+    bool isImage = messageModel.content.startsWith('https://');
     int ts = messageModel.dateTime;
     var dt = DateTime.fromMillisecondsSinceEpoch(ts);
-
     var date = DateFormat('MM/dd/yyyy, hh:mm a').format(dt);
+
     return Align(
       alignment: AlignmentDirectional.centerStart,
       child: IntrinsicWidth(
@@ -41,7 +42,14 @@ class ReceiverWidget extends StatelessWidget {
                   color: AppColors.primaryColor,
                 ),
               ),
-              Text(
+              isImage
+                  ? Image.network(
+                messageModel.content,
+                width: 150.w,
+                height: 150.h,
+                fit: BoxFit.cover,
+              )
+                  : Text(
                 messageModel.content,
                 style: AppTextStyles.bodyMedium.copyWith(
                   color: AppColors.primaryColor,
