@@ -18,13 +18,13 @@ class CustomTextFormField extends StatefulWidget {
       this.onSaved,
       this.prefixIcon,
       this.contentPadding,
-        this.fillColor,
-        this.borderColor,
-        this.hintColor,
-        this.textColor,
-        this.courserColor,
-        this.radius,
-        this.suffixIconColor,
+      this.fillColor,
+      this.borderColor,
+      this.hintColor,
+      this.textColor,
+      this.courserColor,
+      this.radius,
+      this.suffixIconColor,
       super.key});
   String hintText;
   Widget? suffixIcon;
@@ -81,13 +81,14 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           color: widget.hintColor ?? AppColors.whiteColor,
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(widget.radius ?? 8.r ),
-          borderSide: BorderSide(color: widget.borderColor ?? AppColors.whiteColor, width: 0.3.w),
+          borderRadius: BorderRadius.circular(widget.radius ?? 8.r),
+          borderSide: BorderSide(
+              color: widget.borderColor ?? AppColors.whiteColor, width: 0.3.w),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(widget.radius ?? 8.r),
           borderSide: BorderSide(
-            color:widget.borderColor ?? AppColors.whiteColor,
+            color: widget.borderColor ?? AppColors.whiteColor,
             width: 0.3.w,
           ),
         ),
@@ -114,7 +115,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   });
                 },
                 child: Icon(
-                  obscureText ?  Icons.visibility_off : Icons.visibility,
+                  obscureText ? Icons.visibility_off : Icons.visibility,
                   color: widget.suffixIconColor ?? AppColors.whiteColor,
                 ),
               )

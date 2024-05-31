@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:chat_app/shared/utils/app_strings.dart';
 import 'package:chat_app/shared/utils/app_text_styles.dart';
 import 'package:chat_app/shared/utils/colors.dart';
+import 'package:chat_app/shared/utils/images_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -31,7 +32,8 @@ class DeleteAccountDialog extends StatelessWidget {
             ),
             child: Text(
               AppStrings.delete,
-              style: AppTextStyles.bodyMedium.copyWith(color: AppColors.lightColor),
+              style: AppTextStyles.bodyMedium
+                  .copyWith(color: AppColors.lightColor),
             ),
           ),
           ElevatedButton(
@@ -47,9 +49,10 @@ class DeleteAccountDialog extends StatelessWidget {
               backgroundColor: AppColors.primaryColor,
             ),
             child: Text(
-            AppStrings.cancel,
-            style: AppTextStyles.bodyMedium.copyWith(color: AppColors.lightColor),
-          ),
+              AppStrings.cancel,
+              style: AppTextStyles.bodyMedium
+                  .copyWith(color: AppColors.lightColor),
+            ),
           ),
         ],
         insetPadding: EdgeInsets.all(
@@ -73,12 +76,24 @@ class DeleteAccountDialog extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    AppStrings.deleteAccount,
-                    style: AppTextStyles.bodyMedium.copyWith(
-                      color: AppColors.primaryColor,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  Row(
+                    children: [
+                      const ImageIcon(
+                        AssetImage(AppImages.icDeleteAccount),
+                        color: AppColors.primaryColor,
+                        size: 18,
+                      ),
+                      SizedBox(
+                        width: 10.w,
+                      ),
+                      Text(
+                        AppStrings.deleteAccount,
+                        style: AppTextStyles.bodyMedium.copyWith(
+                          color: AppColors.primaryColor,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(height: 16.h),
                   Text(

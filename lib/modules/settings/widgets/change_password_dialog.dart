@@ -3,6 +3,7 @@ import 'package:chat_app/shared/components/custom_text_form_field.dart';
 import 'package:chat_app/shared/utils/app_strings.dart';
 import 'package:chat_app/shared/utils/app_text_styles.dart';
 import 'package:chat_app/shared/utils/colors.dart';
+import 'package:chat_app/shared/utils/images_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -78,12 +79,24 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  AppStrings.changePassword,
-                  style: AppTextStyles.bodyMedium.copyWith(
-                    color: AppColors.primaryColor,
-                    fontWeight: FontWeight.w600,
-                  ),
+                Row(
+                  children: [
+                    const ImageIcon(
+                      AssetImage(AppImages.icChangePassword),
+                      color: AppColors.primaryColor,
+                      size: 22,
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    Text(
+                      AppStrings.changePassword,
+                      style: AppTextStyles.bodyMedium.copyWith(
+                        color: AppColors.primaryColor,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 16.h),
                 SizedBox(

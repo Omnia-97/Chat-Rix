@@ -23,7 +23,8 @@ class AboutAppDialog extends StatelessWidget {
         content: SizedBox(
           height: 320.h,
           child: Padding(
-            padding: EdgeInsets.only(left: 22.w, right: 22.w, bottom: 22.h, top: 26.h),
+            padding: EdgeInsets.only(
+                left: 22.w, right: 22.w, bottom: 22.h, top: 26.h),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +51,7 @@ class AboutAppDialog extends StatelessWidget {
                 ),
                 SizedBox(height: 16.h),
                 Text(
-                 AppStrings.aboutAppDetails,
+                  AppStrings.aboutAppDetails,
                   style: AppTextStyles.bodyMedium.copyWith(
                     color: AppColors.primaryColor.withOpacity(0.6),
                     fontSize: 18.sp,
