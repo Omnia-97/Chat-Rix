@@ -49,6 +49,7 @@ class AppStrings {
   static const String enterNewPassword = 'Enter New Password';
   static const String aboutChatRix = 'About Chat Rix';
   static const String privacyPolicy = 'Privacy Policy';
+  static const String accountDetails = 'Account Details';
   static const String privacyPolicyDetails = 'Introduction :\n'
       '- Welcome to Chat Rix. We value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and protect your information.\n\n'
       'Information We Collect :\n'

@@ -4,6 +4,7 @@ import 'package:chat_app/modules/provider/user_provider.dart';
 import 'package:chat_app/modules/settings/setting_navigator.dart';
 import 'package:chat_app/modules/settings/setting_vm.dart';
 import 'package:chat_app/modules/settings/widgets/about_app_dialog.dart';
+import 'package:chat_app/modules/settings/widgets/account_details_dialog.dart';
 import 'package:chat_app/modules/settings/widgets/change_password_dialog.dart';
 import 'package:chat_app/modules/settings/widgets/custom_divider.dart';
 import 'package:chat_app/modules/settings/widgets/custom_row_widget.dart';
@@ -131,6 +132,14 @@ class _SettingsViewState extends BaseView<SettingsView, SettingViewModel>
                 text: 'Account',
                 hintText: 'Info about account',
                 imagePath: AppImages.icUser,
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const AccountDetailsDialog();
+                    },
+                  );
+                },
               ),
               const CustomDivider(),
               CustomRowWidget(
