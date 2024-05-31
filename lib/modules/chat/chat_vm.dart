@@ -22,23 +22,19 @@ class ChatViewModel extends BaseViewModel<ChatNavigator> {
       dateTime: DateTime.now().microsecondsSinceEpoch,
     );
     DataBaseUtils.addMessageToFireStore(messageModel).then(
-          (value) => navigator!.clearContentMessage(),
+      (value) => navigator!.clearContentMessage(),
     );
   }
 
   Future<void> sendImageMessage(File image) async {
     try {
-      // Upload image to Firebase Storage
       String fileName = DateTime.now().millisecondsSinceEpoch.toString();
-      Reference storageReference = FirebaseStorage.instance
-          .ref()
-          .child('chat_images')
-          .child(fileName);
+      Reference storageReference =
+          FirebaseStorage.instance.ref().child('chat_images').child(fileName);
       UploadTask uploadTask = storageReference.putFile(image);
       TaskSnapshot storageTaskSnapshot = await uploadTask.whenComplete(() {});
       String imageUrl = await storageTaskSnapshot.ref.getDownloadURL();
 
-      // Send message with image URL
       MessageModel messageModel = MessageModel(
         roomId: roomModel.id,
         senderId: userModel.id,

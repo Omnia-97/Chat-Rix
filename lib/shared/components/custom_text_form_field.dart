@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  CustomTextFormField(
+  const CustomTextFormField(
       {required this.hintText,
       this.suffixIcon,
       this.isPassword,
@@ -26,17 +26,17 @@ class CustomTextFormField extends StatefulWidget {
       this.radius,
       this.suffixIconColor,
       super.key});
-  String hintText;
-  Widget? suffixIcon;
-  Color? suffixIconColor;
-  Widget? prefixIcon;
-  Color? fillColor;
-  Color? borderColor;
-  Color? hintColor;
-  Color? textColor;
-  Color? courserColor;
-  double? radius;
-  EdgeInsetsGeometry? contentPadding;
+  final String hintText;
+  final Widget? suffixIcon;
+  final Color? suffixIconColor;
+  final Widget? prefixIcon;
+  final Color? fillColor;
+  final Color? borderColor;
+  final Color? hintColor;
+  final Color? textColor;
+  final Color? courserColor;
+  final double? radius;
+  final EdgeInsetsGeometry? contentPadding;
   final bool? isPassword;
   final TextEditingController? controller;
   final TextInputType? keyboardType;

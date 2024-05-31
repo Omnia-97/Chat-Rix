@@ -12,52 +12,15 @@ import 'package:chat_app/shared/utils/app_strings.dart';
 import 'package:chat_app/shared/utils/app_text_styles.dart';
 import 'package:chat_app/shared/utils/colors.dart';
 import 'package:chat_app/shared/utils/images_path.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-import '../../shared/database/database_utils.dart';
-/*
-void initDynamicLinks() async {
-  FirebaseDynamicLinks.instance.onLink(
-    onSuccess: (PendingDynamicLinkData? dynamicLink) async {
-      final Uri? deepLink = dynamicLink?.link;
-
-      if (deepLink != null) {
-        var isLoggedIn = FirebaseAuth.instance.currentUser != null;
-        if (isLoggedIn) {
-          // User is logged in, add them to the room
-          String? roomId = deepLink.queryParameters['roomId'];
-          if (roomId != null) {
-            String userId = FirebaseAuth.instance.currentUser!.uid;
-            await DataBaseUtils.inviteUserToRoom(roomId, userId);
-          }
-        } else {
-          // User is not logged in, redirect to login/signup page
-          // and handle adding to room after login/signup
-          redirectToLoginPage(deepLink);
-        }
-      }
-    },
-    onError: (OnLinkErrorException e) async {
-      print('onLinkError: ${e.message}');
-    },
-  );
-}
-
-*//*void redirectToLoginPage(Uri deepLink, BuildContext context) {
-  // Navigate to the login page, pass the deepLink so you can handle it after login
- Navigator.pushNamed(MaterialPageRoute(builder: (context) {
-
- },));
-
-}*/
-
 class SignInView extends StatefulWidget {
-  const SignInView({super.key,});
+  const SignInView({
+    super.key,
+  });
 
   @override
   State<SignInView> createState() => _SignInViewState();
@@ -70,7 +33,6 @@ class _SignInViewState extends BaseView<SignInView, SignInViewModel>
   var passwordController = TextEditingController();
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     viewModel.navigator = this;
   }
@@ -196,7 +158,7 @@ class _SignInViewState extends BaseView<SignInView, SignInViewModel>
                       ),
                       CustomButton(
                         width: double.infinity,
-                        gradient:  LinearGradient(colors: [
+                        gradient: LinearGradient(colors: [
                           AppColors.primaryColor,
                           AppColors.secondaryColor.withOpacity(0.5),
                         ]),

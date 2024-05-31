@@ -7,8 +7,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 class RoomItem extends StatelessWidget {
-  RoomItem({super.key, required this.roomModel});
-  RoomModel roomModel;
+  const RoomItem({super.key, required this.roomModel});
+  final RoomModel roomModel;
   @override
   Widget build(BuildContext context) {
     var dt = DateTime.fromMillisecondsSinceEpoch(
@@ -31,7 +31,8 @@ class RoomItem extends StatelessWidget {
                   CircleAvatar(
                     radius: 30,
                     backgroundImage: AssetImage(
-                        'assets/images/${roomModel.roomCategoryId}.jpg'),
+                      'assets/images/${roomModel.roomCategoryId}.jpg',
+                    ),
                   ),
                   SizedBox(
                     width: 20.w,

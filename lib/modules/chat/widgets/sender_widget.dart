@@ -9,11 +9,11 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class SenderWidget extends StatelessWidget {
-  SenderWidget({
+  const SenderWidget({
     super.key,
     required this.messageModel,
   });
-  MessageModel messageModel;
+  final MessageModel messageModel;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class SenderWidget extends StatelessWidget {
       child: IntrinsicWidth(
         child: Container(
           margin: const EdgeInsets.all(8.0),
-          padding:  EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 12.0.w),
+          padding: EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 12.0.w),
           decoration: BoxDecoration(
             color: AppColors.primaryColor,
             borderRadius: BorderRadius.only(
@@ -45,15 +45,15 @@ class SenderWidget extends StatelessWidget {
               SizedBox(height: 5.h),
               isImage
                   ? Image.network(
-                messageModel.content,
-                width: 150.w,
-                height: 150.h,
-                fit: BoxFit.cover,
-              )
+                      messageModel.content,
+                      width: 150.w,
+                      height: 150.h,
+                      fit: BoxFit.cover,
+                    )
                   : Text(
-                messageModel.content,
-                style: AppTextStyles.bodyMedium,
-              ),
+                      messageModel.content,
+                      style: AppTextStyles.bodyMedium,
+                    ),
               Align(
                 alignment: AlignmentDirectional.centerEnd,
                 child: Text(
@@ -70,19 +70,19 @@ class SenderWidget extends StatelessWidget {
 }
 
 class MessageWidget extends StatelessWidget {
-  MessageWidget({
+  const MessageWidget({
     super.key,
     required this.messageModel,
   });
-  MessageModel messageModel;
+  final MessageModel messageModel;
 
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<UserProvider>(context);
-    return provider.userModel!.id  == messageModel.senderId
+    return provider.userModel!.id == messageModel.senderId
         ? SenderWidget(messageModel: messageModel)
         : ReceiverWidget(
-      messageModel: messageModel,
-    );
+            messageModel: messageModel,
+          );
   }
 }

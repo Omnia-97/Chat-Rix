@@ -5,7 +5,6 @@ import 'package:chat_app/modules/create_new_room/create_new_room_vm.dart';
 import 'package:chat_app/modules/provider/user_provider.dart';
 import 'package:chat_app/shared/components/custom_button.dart';
 import 'package:chat_app/shared/components/custom_text_form_field.dart';
-import 'package:chat_app/shared/routes/pages_route_name.dart';
 import 'package:chat_app/shared/utils/app_strings.dart';
 import 'package:chat_app/shared/utils/app_text_styles.dart';
 import 'package:chat_app/shared/utils/colors.dart';
@@ -96,7 +95,7 @@ class _CreateNewRoomViewState
                           Padding(
                             padding: EdgeInsets.only(left: 30.w),
                             child: Text(
-                              'Kickstart your conversation!',
+                              'Start your new room!',
                               style: AppTextStyles.titleLarge.copyWith(
                                   color: AppColors.whiteColor,
                                   fontSize: 12.sp,
@@ -123,16 +122,6 @@ class _CreateNewRoomViewState
                                   fontSize: 26.sp),
                             ),
                           ),
-                          /* Align(
-                            alignment: AlignmentDirectional.center,
-                            child: Text(
-                              AppStrings.missed,
-                              style: AppTextStyles.hintTextStyle.copyWith(
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.grayColor,
-                              ),
-                            ),
-                          ),*/
                           SizedBox(
                             height: 24.h,
                           ),
@@ -285,8 +274,6 @@ class _CreateNewRoomViewState
                                   roomDescription:
                                       roomDescriptionController.text,
                                   roomCategoryId: roomCategoryModel.id,
-                                  /*userId:
-                                      FirebaseAuth.instance.currentUser!.uid,*/
                                   participantIds: [
                                     FirebaseAuth.instance.currentUser!.uid
                                   ],
@@ -294,65 +281,6 @@ class _CreateNewRoomViewState
                               }
                             },
                           ),
-                          /* SizedBox(
-                            height: 30.h,
-                          ),
-                          InkWell(
-                            onTap: (){
-                              Navigator.pop(context);
-                            },
-                            child: Row(children: [
-                              Icon(Icons.arrow_back_ios,size: 20.w,color: Color(0xFFEAAB1C,),),
-                              SizedBox(
-                                width: 1.w,
-                              ),
-                              Text(
-                                AppStrings.back,
-                                style: AppTextStyles.hintTextStyle.copyWith(
-                                  color: Color(0xFFEAAB1C),
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ],),
-                          ),*/
-                          /*Row(
-                            children: [
-                           */ /* InkWell(
-                              onTap: (){
-                                Navigator.pop(context);
-                              },
-                              child: Row(children: [
-                                Icon(Icons.arrow_back_ios,size: 20.w,color: Color(0xFFEAAB1C,),),
-                                SizedBox(
-                                  width: 1.w,
-                                ),
-                                Text(
-                                  AppStrings.back,
-                                  style: AppTextStyles.hintTextStyle.copyWith(
-                                    color: Color(0xFFEAAB1C),
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ],),
-                            ),
-                              SizedBox(width: 176.w,),*/ /*
-                              CustomButton(
-                                width: double.infinity,
-                                buttonText: AppStrings.create,
-                                colorBg: AppColors.primaryColor,
-                                onTap: () {},
-                              ),
-                       */ /* SizedBox(width: 114.w,),
-                              CustomButton(
-                                width: 118.w,
-                                textColor: AppColors.primaryColor,
-                                buttonText: AppStrings.cancel,
-                                colorBg: AppColors.primaryColor.withOpacity(0.1),
-                                borderColor: AppColors.primaryColor,
-                                onTap: () {},
-                              ),*/ /*
-                            ],
-                          ),*/
                         ],
                       ),
                     ),

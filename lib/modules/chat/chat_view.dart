@@ -6,9 +6,9 @@ import 'package:chat_app/modules/base.dart';
 import 'package:chat_app/modules/chat/chat_navigator.dart';
 import 'package:chat_app/modules/chat/chat_vm.dart';
 import 'package:chat_app/modules/chat/widgets/sender_widget.dart';
-import 'package:chat_app/modules/layout/layout_view.dart';
 import 'package:chat_app/modules/provider/user_provider.dart';
 import 'package:chat_app/shared/components/custom_text_form_field.dart';
+import 'package:chat_app/shared/routes/pages_route_name.dart';
 import 'package:chat_app/shared/utils/app_text_styles.dart';
 import 'package:chat_app/shared/utils/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -90,19 +90,11 @@ class _ChatViewState extends BaseView<ChatView, ChatViewModel>
             actions: [
               IconButton(
                 icon: const Icon(
-                  Icons.person_add,
+                  Icons.group_add_rounded,
                   color: AppColors.whiteColor,
                 ),
                 onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => LayoutView(
-                        selectedIndex: provider.currentIndex,
-                      ),
-                    ),
-                    (route) => false,
-                  );
+                  Navigator.pushNamed(context, PagesRouteName.createRoom);
                 },
               ),
             ],

@@ -10,8 +10,6 @@ class CreateAccountViewModel extends BaseViewModel<CreateAccountNavigator> {
     required String email,
     required String password,
     required String yourName,
-    /*required Function onSuccess,
-        required Function onError*/
   }) async {
     try {
       navigator!.showLoading();
@@ -30,7 +28,6 @@ class CreateAccountViewModel extends BaseViewModel<CreateAccountNavigator> {
       });
 
       navigator!.showSuccessMassage('Successfully created account');
-      //onSuccess();
     } on FirebaseAuthException catch (e) {
       if (e.code == FirebaseErrors.weakPassword) {
         navigator!.hideLoading();

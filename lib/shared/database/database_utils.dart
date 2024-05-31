@@ -36,32 +36,6 @@ class DataBaseUtils {
     }
   }
 
-  static Future<void> inviteUserToRoom(String roomId, String userId) async {
-    var roomDoc = getRoomsCollection().doc(roomId);
-    var roomSnapshot = await roomDoc.get();
-    if (roomSnapshot.exists) {
-      var roomData = roomSnapshot.data();
-      if (roomData != null) {
-        var room = RoomModel.fromJson(roomData.toJson());
-        if (!room.participantIds.contains(userId)) {
-          room.participantIds.add(userId);
-          await roomDoc.update(room.toJson());
-        }
-      }
-    }
-  }
-
-  static Future<UserModel?> getUserByEmail(String email) async {
-    var usersCollection = getUsersCollection();
-    var querySnapshot =
-        await usersCollection.where('email', isEqualTo: email).get();
-    if (querySnapshot.docs.isNotEmpty) {
-      return UserModel.fromJson(querySnapshot.docs.first.data().toJson());
-    } else {
-      return null;
-    }
-  }
-
   static CollectionReference<RoomModel> getRoomsCollection() {
     return FirebaseFirestore.instance
         .collection(RoomModel.collectionName)
@@ -119,24 +93,11 @@ class DataBaseUtils {
     return getMessageCollection(roomId).orderBy('dateTime').snapshots();
   }
 
-  static Future<void> addUserToRoom(String roomId, String userId) async {
-    var roomDoc = await getRoomsCollection().doc(roomId).get();
-    if (roomDoc.exists) {
-      var roomData = roomDoc.data()!.toJson();
-      List<String> participantIds =
-          List<String>.from(roomData['participantIds'] ?? []);
-      if (!participantIds.contains(userId)) {
-        participantIds.add(userId);
-        await getRoomsCollection().doc(roomId).update({
-          'participantIds': participantIds,
-        });
-      }
-    }
-  }
   static Future<void> changePassword(String newPassword) async {
     User? user = FirebaseAuth.instance.currentUser;
     await user?.updatePassword(newPassword);
   }
+
   static Future<void> deleteUserAccount() async {
     User? user = FirebaseAuth.instance.currentUser;
     await user?.delete();

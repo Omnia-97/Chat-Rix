@@ -8,14 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChangePasswordDialog extends StatefulWidget {
-  ChangePasswordDialog(
+  const ChangePasswordDialog(
       {super.key,
       required this.onPressed,
       required this.newPasswordController,
       required this.currentPasswordController});
   final VoidCallback onPressed;
-  TextEditingController newPasswordController;
-  TextEditingController currentPasswordController;
+  final TextEditingController newPasswordController;
+  final TextEditingController currentPasswordController;
   @override
   State<ChangePasswordDialog> createState() => _ChangePasswordDialogState();
 }

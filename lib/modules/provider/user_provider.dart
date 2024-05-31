@@ -1,5 +1,4 @@
 import 'package:chat_app/models/user_model.dart';
-import 'package:chat_app/modules/contacts/contacts_view.dart';
 import 'package:chat_app/modules/home/home_view.dart';
 import 'package:chat_app/modules/settings/settings_view.dart';
 import 'package:chat_app/shared/database/database_utils.dart';
@@ -29,9 +28,6 @@ class UserProvider extends ChangeNotifier {
   int currentIndex = 0;
   List<Widget> tabs = [
     const HomeView(),
-    const InviteUserView(
-      roomId: '',
-    ),
     const SettingsView(),
   ];
 
