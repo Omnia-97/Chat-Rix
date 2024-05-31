@@ -24,9 +24,11 @@ class CustomTextFormField extends StatefulWidget {
         this.textColor,
         this.courserColor,
         this.radius,
+        this.suffixIconColor,
       super.key});
   String hintText;
   Widget? suffixIcon;
+  Color? suffixIconColor;
   Widget? prefixIcon;
   Color? fillColor;
   Color? borderColor;
@@ -112,8 +114,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   });
                 },
                 child: Icon(
-                  obscureText ? Icons.visibility : Icons.visibility_off,
-                  color: Colors.white,
+                  obscureText ?  Icons.visibility_off : Icons.visibility,
+                  color: widget.suffixIconColor ?? AppColors.whiteColor,
                 ),
               )
             : widget.suffixIcon,

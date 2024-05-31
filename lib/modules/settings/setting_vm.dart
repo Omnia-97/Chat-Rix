@@ -8,8 +8,6 @@ class SettingViewModel extends BaseViewModel<SettingNavigator> {
       navigator!.showLoading();
       await DataBaseUtils.changePassword(newPassword);
       navigator!.hideLoading();
-      navigator!.showSuccessMassage('Password changed successfully');
-      navigator!.hideLoading();
       navigator!.goToLogin();
     } catch (e) {
       navigator!.showErrorMassage(e.toString());
@@ -19,11 +17,9 @@ class SettingViewModel extends BaseViewModel<SettingNavigator> {
 
   Future<void> deleteAccount() async {
     try {
-     /* navigator!.showLoading();*/
+      navigator!.showLoading();
       await DataBaseUtils.deleteUserAccount();
-     /* navigator!.hideLoading();*/
-      /*navigator!.showSuccessMassage('Account Deleted successfully');
-      navigator!.hideLoading();*/
+      navigator!.hideLoading();
       navigator!.goToLogin();
     } catch (e) {
       navigator!.showErrorMassage(e.toString());

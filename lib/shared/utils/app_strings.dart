@@ -40,5 +40,12 @@ class AppStrings {
   static const String back = 'Back';
   static const String deleteAccount = 'Delete Account';
   static const String delete = 'Delete';
+  static const String close = 'Close';
   static const String deleteAccountSure = 'Are you sure you want to delete your account?';
+  static const String changePassword = 'Change Password';
+  static const String enterCurrentPassword = 'Enter Current Password';
+  static const String enterNewPassword = 'Enter New Password';
+  static const String aboutChatRix = 'About Chat Rix';
+  static const String aboutAppDetails =  'Chat Rix is an innovative chat application that allows users to create and join various rooms. Each room has unique topics where users can communicate and interact with each other based on their interests.';
+
 }
