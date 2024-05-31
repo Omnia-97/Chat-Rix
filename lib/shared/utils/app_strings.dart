@@ -38,4 +38,7 @@ class AppStrings {
   static const String roomDescription = 'Description';
   static const String create = 'Create';
   static const String back = 'Back';
+  static const String deleteAccount = 'Delete Account';
+  static const String delete = 'Delete';
+  static const String deleteAccountSure = 'Are you sure you want to delete your account?';
 }

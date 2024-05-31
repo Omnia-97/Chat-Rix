@@ -5,6 +5,7 @@ import 'package:chat_app/modules/settings/setting_navigator.dart';
 import 'package:chat_app/modules/settings/setting_vm.dart';
 import 'package:chat_app/modules/settings/widgets/custom_divider.dart';
 import 'package:chat_app/modules/settings/widgets/custom_row_widget.dart';
+import 'package:chat_app/shared/routes/pages_route_name.dart';
 import 'package:chat_app/shared/utils/app_text_styles.dart';
 import 'package:chat_app/shared/utils/colors.dart';
 import 'package:chat_app/shared/utils/images_path.dart';
@@ -12,6 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+
+import 'widgets/delete_account_dialog.dart';
 
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
@@ -45,7 +48,9 @@ class _SettingsViewState extends BaseView<SettingsView, SettingViewModel>
     return ChangeNotifierProvider(
       create: (context) => viewModel,
       child: Padding(
-        padding: EdgeInsets.only(top: 20.h,),
+        padding: EdgeInsets.only(
+          top: 20.h,
+        ),
         child: Column(
           children: [
             Padding(
@@ -56,12 +61,10 @@ class _SettingsViewState extends BaseView<SettingsView, SettingViewModel>
                 children: [
                   if (image != null) ...[
                     CircleAvatar(
-                      backgroundImage: FileImage(image!,),
                       radius: 80.r,
-                     /* child: Image.file(
+                      backgroundImage: FileImage(
                         image!,
-                        fit: BoxFit.fill,
-                      ),*/
+                      ),
                     ),
                   ] else ...[
                     CircleAvatar(
@@ -76,7 +79,7 @@ class _SettingsViewState extends BaseView<SettingsView, SettingViewModel>
                   ],
                   Positioned(
                     top: 108.h,
-                child: InkWell(
+                    child: InkWell(
                       onTap: () {
                         getImageFromGallery();
                       },
@@ -114,30 +117,13 @@ class _SettingsViewState extends BaseView<SettingsView, SettingViewModel>
                 fontSize: 16.sp,
               ),
             ),
-           /* SizedBox(height: 20.h,),
-            Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 28.w),
-              child: Container(
-                height: 0.3.h,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  color: AppColors.primaryColor,
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.primaryColor.withOpacity(0.7),
-                      blurRadius: 1,
-                    ),
-                  ],
-                ),
-              ),
-            ),*/
             SizedBox(
               height: 28.h,
             ),
-
             const CustomRowWidget(
               text: 'Account',
-              hintText: 'Info about account', imagePath: AppImages.icUser,
+              hintText: 'Info about account',
+              imagePath: AppImages.icUser,
             ),
             const CustomDivider(),
             const CustomRowWidget(
@@ -148,20 +134,33 @@ class _SettingsViewState extends BaseView<SettingsView, SettingViewModel>
             const CustomDivider(),
             const CustomRowWidget(
               text: 'Privacy Policy',
-              hintText: 'Details about privacy policy', imagePath: AppImages.icPolicy,
+              hintText: 'Details about privacy policy',
+              imagePath: AppImages.icPolicy,
             ),
             const CustomDivider(),
-            const CustomRowWidget(
+            CustomRowWidget(
               text: 'Delete Account',
-              hintText: 'Remove account permanently', imagePath: AppImages.icDeleteAccount,
+              hintText: 'Remove account permanently',
+              imagePath: AppImages.icDeleteAccount,
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return DeleteAccountDialog(
+                      onPressed: () {
+                        viewModel.deleteAccount();
+                      },
+                    );
+                  },
+                );
+              },
             ),
             const CustomDivider(),
             const CustomRowWidget(
               text: 'About Us',
-              hintText: 'Info about app', imagePath: AppImages.icAbout,
+              hintText: 'Info about app',
+              imagePath: AppImages.icAbout,
             ),
-
-
           ],
         ),
       ),
@@ -171,5 +170,14 @@ class _SettingsViewState extends BaseView<SettingsView, SettingViewModel>
   @override
   SettingViewModel initViewModel() {
     return SettingViewModel();
+  }
+
+  @override
+  void goToLogin() {
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      PagesRouteName.signIn,
+      (route) => false,
+    );
   }
 }

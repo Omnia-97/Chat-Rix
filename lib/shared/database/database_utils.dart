@@ -133,4 +133,12 @@ class DataBaseUtils {
       }
     }
   }
+  static Future<void> changePassword(String newPassword) async {
+    User? user = FirebaseAuth.instance.currentUser;
+    await user?.updatePassword(newPassword);
+  }
+  static Future<void> deleteUserAccount() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    await user?.delete();
+  }
 }
