@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 class ReceiverWidget extends StatelessWidget {
-  ReceiverWidget({
+  const ReceiverWidget({
     super.key,
     required this.messageModel,
   });
@@ -26,7 +26,7 @@ class ReceiverWidget extends StatelessWidget {
           margin: const EdgeInsets.all(8.0),
           padding: EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 12.0.w),
           decoration: BoxDecoration(
-            color: Color(0xFFe9edf1),
+            color: AppColors.lightColor,
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(18.r),
               topRight: Radius.circular(18.r),
@@ -44,17 +44,17 @@ class ReceiverWidget extends StatelessWidget {
               ),
               isImage
                   ? Image.network(
-                messageModel.content,
-                width: 150.w,
-                height: 150.h,
-                fit: BoxFit.cover,
-              )
+                      messageModel.content,
+                      width: 150.w,
+                      height: 150.h,
+                      fit: BoxFit.cover,
+                    )
                   : Text(
-                messageModel.content,
-                style: AppTextStyles.bodyMedium.copyWith(
-                  color: AppColors.primaryColor,
-                ),
-              ),
+                      messageModel.content,
+                      style: AppTextStyles.bodyMedium.copyWith(
+                        color: AppColors.primaryColor,
+                      ),
+                    ),
               Align(
                 alignment: AlignmentDirectional.centerEnd,
                 child: Text(

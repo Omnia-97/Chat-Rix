@@ -1,22 +1,17 @@
 import 'dart:io';
-
 import 'package:chat_app/models/message_model.dart';
 import 'package:chat_app/models/room_model.dart';
 import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/modules/base.dart';
 import 'package:chat_app/modules/chat/chat_navigator.dart';
 import 'package:chat_app/modules/chat/chat_vm.dart';
-import 'package:chat_app/modules/chat/widgets/receiver_widget.dart';
 import 'package:chat_app/modules/chat/widgets/sender_widget.dart';
-
 import 'package:chat_app/modules/layout/layout_view.dart';
 import 'package:chat_app/modules/provider/user_provider.dart';
 import 'package:chat_app/shared/components/custom_text_form_field.dart';
-
 import 'package:chat_app/shared/utils/app_text_styles.dart';
 import 'package:chat_app/shared/utils/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
@@ -136,7 +131,6 @@ class _ChatViewState extends BaseView<ChatView, ChatViewModel>
                       snapshot.data?.docs.map((doc) => doc.data()).toList();
                   return ListView.builder(
                     itemBuilder: (context, index) {
-                      print(message?[index].senderName);
                       return MessageWidget(messageModel: message![index]);
                     },
                     itemCount: message?.length ?? 0,
@@ -160,7 +154,7 @@ class _ChatViewState extends BaseView<ChatView, ChatViewModel>
                             onTap: () {
                               getImageFromGallery();
                             },
-                            child: Icon(
+                            child: const Icon(
                               Icons.camera_alt_outlined,
                               color: AppColors.whiteColor,
                               size: 20,
