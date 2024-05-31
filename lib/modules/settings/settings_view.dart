@@ -182,7 +182,14 @@ class _SettingsViewState extends BaseView<SettingsView, SettingViewModel>
                 text: 'About Us',
                 hintText: 'Info about app',
                 imagePath: AppImages.icAbout,
-
+                onTap: (){
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const AboutAppDialog();
+                    },
+                  );
+                },
               ),
             ],
           ),
