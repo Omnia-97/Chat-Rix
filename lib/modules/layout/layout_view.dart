@@ -22,7 +22,6 @@ class _LayoutViewState extends BaseView<LayoutView, LayoutViewModel>
     implements LayoutNavigator {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     viewModel.navigator = this;
   }

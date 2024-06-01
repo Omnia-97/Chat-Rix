@@ -92,6 +92,13 @@ class DataBaseUtils {
       String roomId) {
     return getMessageCollection(roomId).orderBy('dateTime').snapshots();
   }
+  static Future<void> updateUserProfileImage(String userId, String imageUrl) async {
+    try {
+      await FirebaseFirestore.instance.collection('users').doc(userId).update({'imagePath': imageUrl});
+    } catch (e) {
+      print('Error updating profile image: $e');
+    }
+  }
 
   static Future<void> changePassword(String newPassword) async {
     User? user = FirebaseAuth.instance.currentUser;

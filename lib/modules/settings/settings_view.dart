@@ -41,6 +41,8 @@ class _SettingsViewState extends BaseView<SettingsView, SettingViewModel>
         await picker.pickImage(source: ImageSource.gallery);
     if (imageGallery != null) {
       image = File(imageGallery.path);
+      var provider = Provider.of<UserProvider>(context, listen: false);
+      provider.setImagePath(imageGallery.path);
     }
     setState(() {});
   }
@@ -50,7 +52,7 @@ class _SettingsViewState extends BaseView<SettingsView, SettingViewModel>
 
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<UserProvider>(context);
+    var provider = Provider.of<UserProvider>(context, listen: false);
     return ChangeNotifierProvider(
       create: (context) => viewModel,
       child: Padding(
@@ -66,11 +68,11 @@ class _SettingsViewState extends BaseView<SettingsView, SettingViewModel>
                   clipBehavior: Clip.none,
                   alignment: AlignmentDirectional.bottomEnd,
                   children: [
-                    if (image != null) ...[
+                    if (provider.imagePath != null) ...[
                       CircleAvatar(
                         radius: 80.r,
                         backgroundImage: FileImage(
-                          image!,
+                          File(provider.imagePath!),
                         ),
                       ),
                     ] else ...[
@@ -87,9 +89,7 @@ class _SettingsViewState extends BaseView<SettingsView, SettingViewModel>
                     Positioned(
                       top: 108.h,
                       child: InkWell(
-                        onTap: () {
-                          getImageFromGallery();
-                        },
+                        onTap: getImageFromGallery,
                         child: CircleAvatar(
                           backgroundColor: AppColors.primaryColor,
                           radius: 24.r,

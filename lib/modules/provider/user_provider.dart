@@ -8,6 +8,14 @@ import 'package:flutter/material.dart';
 class UserProvider extends ChangeNotifier {
   UserModel? userModel;
   User? firebaseUser;
+  String? _imagePath;
+
+  String? get imagePath => _imagePath;
+
+  setImagePath(String path) {
+    _imagePath = path;
+    notifyListeners();
+  }
   UserProvider() {
     initializeUser();
   }

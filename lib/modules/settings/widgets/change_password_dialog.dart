@@ -57,12 +57,13 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
               style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.r),
+                    side: const BorderSide(color: AppColors.primaryColor),
                   ),
-                  backgroundColor: AppColors.primaryColor),
+                  backgroundColor: AppColors.lightColor),
               child: Text(
                 AppStrings.cancel,
                 style: AppTextStyles.bodyMedium
-                    .copyWith(color: AppColors.lightColor),
+                    .copyWith(color: AppColors.primaryColor),
               ),
             ),
           ),
