@@ -38,8 +38,8 @@ Chat-Rix started as a simple chat application aimed at facilitating communicatio
 </div>
 
 <div style="display: flex; justify-content: space-between; margin-top: 50px;">
-       <img src="https://github.com/Omnia-97/Chat-Rix/blob/master/assets/screen_shots/chat_screen.jpg" height="400">
        <img src="https://github.com/Omnia-97/Chat-Rix/blob/master/assets/screen_shots/logout.jpg" height="400">
+       <img src="https://github.com/Omnia-97/Chat-Rix/blob/master/assets/screen_shots/chat_screen.jpg" height="400">
        <img src="https://github.com/Omnia-97/Chat-Rix/blob/master/assets/screen_shots/setting_screen.jpg" height="400">
        <img src="https://github.com/Omnia-97/Chat-Rix/blob/master/assets/screen_shots/add_profile.jpg" height="400">
 </div>
