@@ -30,24 +30,6 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
         contentPadding: EdgeInsets.zero,
         actions: [
           SizedBox(
-            height: 45.h,
-            child: ElevatedButton(
-              onPressed: () async {
-                widget.onPressed();
-              },
-              style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.r),
-                  ),
-                  backgroundColor: AppColors.primaryColor),
-              child: Text(
-                AppStrings.changePassword,
-                style: AppTextStyles.bodyMedium
-                    .copyWith(color: AppColors.lightColor),
-              ),
-            ),
-          ),
-          SizedBox(
             width: 120.w,
             height: 45.h,
             child: ElevatedButton(
@@ -64,6 +46,24 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
                 AppStrings.cancel,
                 style: AppTextStyles.bodyMedium
                     .copyWith(color: AppColors.primaryColor),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 45.h,
+            child: ElevatedButton(
+              onPressed: () async {
+                widget.onPressed();
+              },
+              style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.r),
+                  ),
+                  backgroundColor: AppColors.primaryColor),
+              child: Text(
+                AppStrings.changePassword,
+                style: AppTextStyles.bodyMedium
+                    .copyWith(color: AppColors.lightColor),
               ),
             ),
           ),

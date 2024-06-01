@@ -20,24 +20,6 @@ class DeleteAccountDialog extends StatelessWidget {
         actions: [
           ElevatedButton(
             onPressed: () {
-              onPressed();
-            },
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                  10.r,
-                ),
-              ),
-              backgroundColor: AppColors.primaryColor,
-            ),
-            child: Text(
-              AppStrings.delete,
-              style: AppTextStyles.bodyMedium
-                  .copyWith(color: AppColors.lightColor),
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
               Navigator.pop(context);
             },
             style: ElevatedButton.styleFrom(
@@ -53,6 +35,24 @@ class DeleteAccountDialog extends StatelessWidget {
               AppStrings.cancel,
               style: AppTextStyles.bodyMedium
                   .copyWith(color: AppColors.primaryColor),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              onPressed();
+            },
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                  10.r,
+                ),
+              ),
+              backgroundColor: AppColors.primaryColor,
+            ),
+            child: Text(
+              AppStrings.delete,
+              style: AppTextStyles.bodyMedium
+                  .copyWith(color: AppColors.lightColor),
             ),
           ),
         ],
