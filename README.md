@@ -47,7 +47,7 @@ Chat-Rix started as a simple chat application aimed at facilitating communicatio
 <div style="display: flex; justify-content: space-between; margin-top: 50px;">
        <img src="https://github.com/Omnia-97/Chat-Rix/blob/master/assets/screen_shots/about_chatRix.jpg" height="400">
        <img src="https://github.com/Omnia-97/Chat-Rix/blob/master/assets/screen_shots/change_pass.jpg" height="400">
-       <img src="https://github.com/Omnia-97/Chat-Rix/blob/master/assets/screen_shots/account_exist.jpg" height="400">
+       <img src="https://github.com/Omnia-97/Chat-Rix/blob/master/assets/screen_shots/delete_account.png" height="400">
 </div>
 
 ## Installation 🔧
