@@ -1,5 +1,4 @@
 import 'package:chat_app/models/user_model.dart';
-import 'package:chat_app/modules/contacts/contacts_view.dart';
 import 'package:chat_app/modules/home/home_view.dart';
 import 'package:chat_app/modules/settings/settings_view.dart';
 import 'package:chat_app/shared/database/database_utils.dart';
@@ -9,6 +8,14 @@ import 'package:flutter/material.dart';
 class UserProvider extends ChangeNotifier {
   UserModel? userModel;
   User? firebaseUser;
+  String? _imagePath;
+
+  String? get imagePath => _imagePath;
+
+  setImagePath(String path) {
+    _imagePath = path;
+    notifyListeners();
+  }
   UserProvider() {
     initializeUser();
   }
@@ -29,7 +36,6 @@ class UserProvider extends ChangeNotifier {
   int currentIndex = 0;
   List<Widget> tabs = [
     const HomeView(),
-    const InviteUserView(),
     const SettingsView(),
   ];
 

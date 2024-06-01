@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class MessageModel {
   static const String collectionName = 'messages';
   String id;
@@ -7,7 +5,7 @@ class MessageModel {
   String senderId;
   String senderName;
   String content;
-  Timestamp timestamp;
+  int dateTime;
 
   MessageModel({
     this.id = '',
@@ -15,7 +13,7 @@ class MessageModel {
     required this.senderId,
     required this.senderName,
     required this.content,
-    required this.timestamp,
+    required this.dateTime,
   });
 
   MessageModel.fromJson(Map<String, dynamic> json)
@@ -25,7 +23,7 @@ class MessageModel {
           senderId: json['senderId'],
           senderName: json['senderName'],
           content: json['content'],
-          timestamp: json['timestamp'],
+          dateTime: json['dateTime'],
         );
 
   Map<String, dynamic> toJson() {
@@ -35,7 +33,7 @@ class MessageModel {
       'senderId': senderId,
       'senderName': senderName,
       'content': content,
-      'timestamp': timestamp,
+      'dateTime': dateTime,
     };
   }
 }

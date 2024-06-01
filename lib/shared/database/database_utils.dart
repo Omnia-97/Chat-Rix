@@ -36,33 +36,6 @@ class DataBaseUtils {
     }
   }
 
-  static Future<void> inviteUserToRoom(String roomId, String userId) async {
-    var roomDoc = getRoomsCollection().doc(roomId);
-    var roomSnapshot = await roomDoc.get();
-
-    if (roomSnapshot.exists) {
-      var roomData = roomSnapshot.data();
-      if (roomData != null) {
-        var room = RoomModel.fromJson(roomData.toJson());
-        if (!room.participantIds.contains(userId)) {
-          room.participantIds.add(userId);
-          await roomDoc.update(room.toJson());
-        }
-      }
-    }
-  }
-
-  static Future<UserModel?> getUserByEmail(String email) async {
-    var usersCollection = getUsersCollection();
-    var querySnapshot =
-        await usersCollection.where('email', isEqualTo: email).get();
-    if (querySnapshot.docs.isNotEmpty) {
-      return UserModel.fromJson(querySnapshot.docs.first.data().toJson());
-    } else {
-      return null;
-    }
-  }
-
   static CollectionReference<RoomModel> getRoomsCollection() {
     return FirebaseFirestore.instance
         .collection(RoomModel.collectionName)
@@ -81,7 +54,6 @@ class DataBaseUtils {
     );
   }
 
-
   static Future<void> addRoomToFireStore(RoomModel roomModel) {
     var collection = getRoomsCollection();
     var docRef = collection.doc();
@@ -91,11 +63,13 @@ class DataBaseUtils {
 
   static Stream<QuerySnapshot<RoomModel>> getRoomFromFireStore() {
     return getRoomsCollection()
-        .where("userId", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        //.where("userId", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
         .snapshots();
   }
+
   static CollectionReference<MessageModel> getMessageCollection(String roomId) {
-    return getRoomsCollection().doc(roomId)
+    return getRoomsCollection()
+        .doc(roomId)
         .collection(MessageModel.collectionName)
         .withConverter<MessageModel>(
       fromFirestore: (snapshot, _) {
@@ -106,13 +80,33 @@ class DataBaseUtils {
       },
     );
   }
+
   static Future<void> addMessageToFireStore(MessageModel messageModel) {
     var collection = getMessageCollection(messageModel.roomId);
     var docRef = collection.doc();
     messageModel.id = docRef.id;
     return docRef.set(messageModel);
   }
-  static Stream<QuerySnapshot<MessageModel>> readMessageFromFireStore(String roomId) {
-    return getMessageCollection(roomId).orderBy('timestamp').snapshots();
+
+  static Stream<QuerySnapshot<MessageModel>> readMessageFromFireStore(
+      String roomId) {
+    return getMessageCollection(roomId).orderBy('dateTime').snapshots();
+  }
+  static Future<void> updateUserProfileImage(String userId, String imageUrl) async {
+    try {
+      await FirebaseFirestore.instance.collection('users').doc(userId).update({'imagePath': imageUrl});
+    } catch (e) {
+      print('Error updating profile image: $e');
+    }
+  }
+
+  static Future<void> changePassword(String newPassword) async {
+    User? user = FirebaseAuth.instance.currentUser;
+    await user?.updatePassword(newPassword);
+  }
+
+  static Future<void> deleteUserAccount() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    await user?.delete();
   }
 }

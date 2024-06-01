@@ -233,32 +233,6 @@ class _CreateAccountViewState
                               email: emailController.text,
                               password: passwordController.text,
                               yourName: yourNameController.text,
-                              /*onSuccess: () {},
-                              onError: (errorMessage) {
-                                return showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return AlertDialog(
-                                        title: const Text(AppStrings.error),
-                                        content: Text(errorMessage),
-                                        actions: [
-                                          ElevatedButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child:
-                                                const Text(AppStrings.tryAgain),
-                                          ),
-                                          ElevatedButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child: const Text(AppStrings.cancel),
-                                          ),
-                                        ],
-                                      );
-                                    });
-                              },*/
                             );
                           }
                         },

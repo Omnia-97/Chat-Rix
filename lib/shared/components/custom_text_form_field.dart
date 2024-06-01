@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  CustomTextFormField(
+  const CustomTextFormField(
       {required this.hintText,
       this.suffixIcon,
       this.isPassword,
@@ -18,21 +18,25 @@ class CustomTextFormField extends StatefulWidget {
       this.onSaved,
       this.prefixIcon,
       this.contentPadding,
-        this.fillColor,
-        this.borderColor,
-        this.hintColor,
-        this.textColor,
-        this.courserColor,
+      this.fillColor,
+      this.borderColor,
+      this.hintColor,
+      this.textColor,
+      this.courserColor,
+      this.radius,
+      this.suffixIconColor,
       super.key});
-  String hintText;
-  Widget? suffixIcon;
-  Widget? prefixIcon;
-  Color? fillColor;
-  Color? borderColor;
-  Color? hintColor;
-  Color? textColor;
-  Color? courserColor;
-  EdgeInsetsGeometry? contentPadding;
+  final String hintText;
+  final Widget? suffixIcon;
+  final Color? suffixIconColor;
+  final Widget? prefixIcon;
+  final Color? fillColor;
+  final Color? borderColor;
+  final Color? hintColor;
+  final Color? textColor;
+  final Color? courserColor;
+  final double? radius;
+  final EdgeInsetsGeometry? contentPadding;
   final bool? isPassword;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
@@ -77,25 +81,26 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           color: widget.hintColor ?? AppColors.whiteColor,
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.r),
-          borderSide: BorderSide(color: widget.borderColor ?? AppColors.whiteColor, width: 0.3.w),
+          borderRadius: BorderRadius.circular(widget.radius ?? 8.r),
+          borderSide: BorderSide(
+              color: widget.borderColor ?? AppColors.whiteColor, width: 0.3.w),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.r),
+          borderRadius: BorderRadius.circular(widget.radius ?? 8.r),
           borderSide: BorderSide(
-            color:widget.borderColor ?? AppColors.whiteColor,
+            color: widget.borderColor ?? AppColors.whiteColor,
             width: 0.3.w,
           ),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.r),
+          borderRadius: BorderRadius.circular(widget.radius ?? 8.r),
           borderSide: BorderSide(
             color: widget.borderColor ?? AppColors.whiteColor,
             width: 0.3.w,
           ),
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.r),
+          borderRadius: BorderRadius.circular(widget.radius ?? 8.r),
           borderSide: BorderSide(
             color: widget.borderColor ?? AppColors.whiteColor,
             width: 0.3.w,
@@ -110,8 +115,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   });
                 },
                 child: Icon(
-                  obscureText ? Icons.visibility : Icons.visibility_off,
-                  color: Colors.white,
+                  obscureText ? Icons.visibility_off : Icons.visibility,
+                  color: widget.suffixIconColor ?? AppColors.whiteColor,
                 ),
               )
             : widget.suffixIcon,

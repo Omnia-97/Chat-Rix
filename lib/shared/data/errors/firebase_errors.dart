@@ -4,6 +4,4 @@ class FirebaseErrors {
   static const String somethingWentWrong = "Something went wrong";
   static const String userNotFound = "user-not-found";
   static const String wrongPassword = "wrong-password";
-
-  
 }

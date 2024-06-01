@@ -8,7 +8,7 @@ class RoomCategoryModel {
     required this.categoryName,
     required this.categoryImage,
   });
-  static List<RoomCategoryModel> getCategories(){
+  static List<RoomCategoryModel> getCategories() {
     return [
       RoomCategoryModel(
         id: 'family',
@@ -28,12 +28,12 @@ class RoomCategoryModel {
       RoomCategoryModel(
         id: 'work',
         categoryName: 'Work',
-        categoryImage:'🏢',
+        categoryImage: '🏢',
       ),
       RoomCategoryModel(
         id: 'music',
         categoryName: 'Music',
-        categoryImage:'🎵',
+        categoryImage: '🎵',
       ),
       RoomCategoryModel(
         id: 'movies',
@@ -55,7 +55,6 @@ class RoomCategoryModel {
         categoryName: 'Others',
         categoryImage: '🔎',
       ),
-
     ];
   }
 }

@@ -18,7 +18,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class SignInView extends StatefulWidget {
-  const SignInView({super.key});
+  const SignInView({
+    super.key,
+  });
 
   @override
   State<SignInView> createState() => _SignInViewState();
@@ -31,7 +33,6 @@ class _SignInViewState extends BaseView<SignInView, SignInViewModel>
   var passwordController = TextEditingController();
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     viewModel.navigator = this;
   }
@@ -157,7 +158,7 @@ class _SignInViewState extends BaseView<SignInView, SignInViewModel>
                       ),
                       CustomButton(
                         width: double.infinity,
-                        gradient:  LinearGradient(colors: [
+                        gradient: LinearGradient(colors: [
                           AppColors.primaryColor,
                           AppColors.secondaryColor.withOpacity(0.5),
                         ]),

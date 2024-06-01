@@ -1,5 +1,3 @@
 import 'package:chat_app/modules/base.dart';
 
-abstract class HomeNavigator extends BaseNavigator{
-
-}
+abstract class HomeNavigator extends BaseNavigator {}

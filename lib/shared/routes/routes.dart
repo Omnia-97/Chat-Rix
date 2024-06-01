@@ -28,7 +28,7 @@ class AppRoutes {
         );
       case PagesRouteName.layout:
         return MaterialPageRoute(
-          builder: (context) => const LayoutView(),
+          builder: (context) => LayoutView(),
           settings: settings,
         );
       case PagesRouteName.home:

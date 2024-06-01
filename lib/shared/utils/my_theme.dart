@@ -1,6 +1,5 @@
 import 'package:chat_app/shared/utils/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class MyTheme {
   static ThemeData lightTheme = ThemeData(
